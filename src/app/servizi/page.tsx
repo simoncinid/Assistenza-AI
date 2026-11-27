@@ -70,7 +70,7 @@ export default function ServiziPage() {
       </div>
 
       <section className="mt-14">
-        <div className="hidden gap-6 border-b border-line-strong pb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft lg:grid lg:grid-cols-[1.05fr_1fr_1.55fr_max-content]">
+        <div className="hidden gap-6 border-b border-line-strong pb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft lg:grid lg:grid-cols-[1.05fr_1fr_1.55fr_13.5rem]">
           <div>Servizio</div>
           <div>Per chi</div>
           <div>Cosa fa</div>
@@ -81,7 +81,7 @@ export default function ServiziPage() {
           {SERVICES.map((s) => (
             <div
               key={s.href}
-              className="grid grid-cols-1 gap-4 py-6 lg:grid-cols-[1.05fr_1fr_1.55fr_max-content] lg:items-center lg:gap-6 lg:py-7"
+              className="grid grid-cols-1 gap-4 py-6 lg:grid-cols-[1.05fr_1fr_1.55fr_13.5rem] lg:items-center lg:gap-6 lg:py-7"
             >
               <div className="min-w-0">
                 <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-rame">

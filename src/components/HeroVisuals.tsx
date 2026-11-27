@@ -159,7 +159,7 @@ export function SectorWhatsAppCard({ sector }: { sector: SimulatorSectorKey }) {
         <span>{data.footer}</span>
         <a
           href="#simulatore"
-          className="inline-flex shrink-0 items-center py-3 -my-3 font-semibold text-rame hover:text-rame-hover"
+          className="inline-flex min-h-11 shrink-0 items-center -my-3 font-semibold text-rame hover:text-rame-hover"
         >
           Prova live ↓
         </a>
