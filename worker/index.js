@@ -24,7 +24,6 @@ async function handleLeadPost(request, env) {
     return Response.json({ ok: false, error: "Richiesta non valida." }, { status: 400 });
   }
 
-  // Honeypot silent drop
   if (body.website && String(body.website).trim().length > 0) {
     return Response.json({ ok: true });
   }
@@ -121,15 +120,41 @@ async function handleLeadPost(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // 301 redirect apex -> www canonical host
+    if (url.hostname === "assistenza-ai.it") {
+      url.hostname = "www.assistenza-ai.it";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === "/googlea029d6c275f7abea.html") {
       return new Response("google-site-verification: googlea029d6c275f7abea.html\n", {
         status: 200,
-        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=300" },
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "public, max-age=300",
+        },
       });
     }
+
     if (url.pathname === "/api/leads" && request.method === "POST") {
       return handleLeadPost(request, env);
     }
-    return env.ASSETS.fetch(request);
+
+    const res = await env.ASSETS.fetch(request);
+
+    // Prevent indexing of workers.dev preview hostname
+    if (url.hostname.endsWith(".workers.dev")) {
+      const headers = new Headers(res.headers);
+      headers.set("X-Robots-Tag", "noindex, nofollow");
+      return new Response(res.body, {
+        status: res.status,
+        statusText: res.statusText,
+        headers,
+      });
+    }
+
+    return res;
   },
 };
