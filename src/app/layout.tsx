@@ -5,7 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
-import { getOrganizationJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getOrganizationJsonLd, getWebSiteJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const figtree = Figtree({
   subsets: ["latin", "latin-ext"],
@@ -34,8 +34,14 @@ export const metadata: Metadata = {
   description:
     "Sviluppo e assistenza AI chiavi in mano per PMI, artigiani e studi italiani. Centralino AI 24/7 sul tuo numero, WhatsApp AI e automazioni su misura conformi GDPR e AI Act.",
   alternates: { canonical: "/" },
+  manifest: "/site.webmanifest",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     type: "website",
@@ -45,6 +51,21 @@ export const metadata: Metadata = {
     title: "Assistenza AI per PMI e Artigiani | Centralino AI e Automazioni",
     description:
       "Centralino AI 24/7 sul tuo numero (*61*), WhatsApp AI e automazioni su misura per PMI e artigiani in Italia.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Assistenza AI — Centralino AI e Automazioni per PMI e Artigiani",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Assistenza AI per PMI e Artigiani | Centralino AI e Automazioni",
+    description:
+      "Centralino AI 24/7 sul tuo numero (*61*), WhatsApp AI e automazioni su misura per PMI e artigiani in Italia.",
+    images: ["/og-image.png"],
   },
   verification: gscVerification ? { google: gscVerification } : undefined,
 };
@@ -58,6 +79,7 @@ export default function RootLayout({
     <html lang="it" className={`${figtree.variable} ${plexMono.variable}`}>
       <body className="flex min-h-screen flex-col bg-surface font-sans text-ink antialiased">
         <JsonLd data={getOrganizationJsonLd()} />
+        <JsonLd data={getWebSiteJsonLd()} />
         {ga4Id ? (
           <>
             <Script

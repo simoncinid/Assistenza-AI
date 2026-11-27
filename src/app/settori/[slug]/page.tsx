@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CallSimulator } from "@/components/CallSimulator";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import { getFaqJsonLd, getServiceJsonLd, getVerticalBySlug, VERTICALS } from "@/lib/site";
+import { getBreadcrumbJsonLd, getFaqJsonLd, getServiceJsonLd, getVerticalBySlug, VERTICALS } from "@/lib/site";
 
 export function generateStaticParams() {
   return VERTICALS.map((v) => ({ slug: v.slug }));
@@ -37,6 +37,7 @@ export default async function VerticalPage({
   return (
     <>
       <JsonLd data={getFaqJsonLd(vertical.faqs)} />
+      <JsonLd data={getBreadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Settori", path: "/servizi" }, { name: vertical.shortTitle, path: `/settori/${vertical.slug}` }])} />
       <JsonLd
         data={getServiceJsonLd({
           name: vertical.metaTitle,

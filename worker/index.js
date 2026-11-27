@@ -16,7 +16,47 @@ const ALLOWED_NEEDS = new Set([
   "Altro",
 ]);
 
+// Sliding-window in-memory rate limit per IP (5 requests / 10 min per isolate)
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const RATE_MAX_REQUESTS = 5;
+const ipHits = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const prev = ipHits.get(ip) || [];
+  const recent = prev.filter((ts) => now - ts < RATE_WINDOW_MS);
+  if (recent.length >= RATE_MAX_REQUESTS) {
+    ipHits.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  ipHits.set(ip, recent);
+  if (ipHits.size > 1000) {
+    for (const [k, v] of ipHits) {
+      if (v.every((ts) => now - ts >= RATE_WINDOW_MS)) ipHits.delete(k);
+    }
+  }
+  return false;
+}
+
 async function handleLeadPost(request, env) {
+  const contentType = request.headers.get("content-type") || "";
+  if (!contentType.toLowerCase().includes("application/json")) {
+    return Response.json({ ok: false, error: "Formato richiesta non valido." }, { status: 415 });
+  }
+
+  const clientIp =
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    "unknown";
+
+  if (clientIp !== "unknown" && isRateLimited(clientIp)) {
+    return Response.json(
+      { ok: false, error: "Hai inviato troppe richieste ravvicinate. Riprova tra qualche minuto o scrivi a info@assistenza-ai.it." },
+      { status: 429 }
+    );
+  }
+
   let body;
   try {
     body = await request.json();
@@ -24,6 +64,7 @@ async function handleLeadPost(request, env) {
     return Response.json({ ok: false, error: "Richiesta non valida." }, { status: 400 });
   }
 
+  // Honeypot anti-spam trap
   if (body.website && String(body.website).trim().length > 0) {
     return Response.json({ ok: true });
   }
@@ -36,7 +77,7 @@ async function handleLeadPost(request, env) {
   const message = String(body.message || "").trim();
   const gdprConsent = Boolean(body.gdprConsent);
 
-  if (name.length < 2 || (!email && !phone)) {
+  if (name.length < 2 || name.length > 200 || (!email && !phone)) {
     return Response.json(
       { ok: false, error: "Inserisci nome/azienda e almeno telefono o email." },
       { status: 400 }
@@ -49,7 +90,7 @@ async function handleLeadPost(request, env) {
     );
   }
 
-  const pageUrl = String(body.page_url || "").trim();
+  const pageUrl = String(body.page_url || body.source_url || "").trim();
   const utmSource = String(body.utm_source || "").trim();
   const utmMedium = String(body.utm_medium || "").trim();
   const utmCampaign = String(body.utm_campaign || "").trim();
@@ -73,7 +114,7 @@ async function handleLeadPost(request, env) {
     }
 
     try {
-      await fetch("https://api.notion.com/v1/pages", {
+      const notionRes = await fetch("https://api.notion.com/v1/pages", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${env.NOTION_TOKEN}`,
@@ -85,76 +126,82 @@ async function handleLeadPost(request, env) {
           properties,
         }),
       });
+      if (!notionRes.ok) {
+        console.error("[lead_submit] Notion HTTP error:", notionRes.status);
+      }
     } catch (err) {
       console.error("[lead_submit] Notion error:", err);
-    }
-  }
-
-  if (env.LEAD_WEBHOOK_URL) {
-    try {
-      await fetch(env.LEAD_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event: "lead_submit",
-          name,
-          email,
-          phone,
-          sector,
-          need,
-          message,
-          pageUrl,
-          utmSource,
-          utmMedium,
-          utmCampaign,
-        }),
-      });
-    } catch (err) {
-      console.error("[lead_submit] Webhook error:", err);
     }
   }
 
   return Response.json({ ok: true });
 }
 
+const IMMUTABLE_PREFIXES = ["/_next/static/", "/brand/", "/icons/"];
+const IMMUTABLE_EXACT = new Set([
+  "/favicon.svg",
+  "/favicon.ico",
+  "/favicon-32x32.png",
+  "/apple-touch-icon.png",
+  "/icon-192.png",
+  "/icon-512.png",
+  "/og-image.png",
+]);
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // 301 redirect apex -> www canonical host
-    if (url.hostname === "assistenza-ai.it") {
-      url.hostname = "www.assistenza-ai.it";
-      url.protocol = "https:";
-      return Response.redirect(url.toString(), 301);
-    }
-
+    // Google Search Console verification file served directly on apex & www
     if (url.pathname === "/googlea029d6c275f7abea.html") {
-      return new Response("google-site-verification: googlea029d6c275f7abea.html\n", {
+      return new Response("google-site-verification: googlea029d6c275f7abea.html", {
         status: 200,
         headers: {
-          "content-type": "text/html; charset=utf-8",
-          "cache-control": "public, max-age=300",
+          "Content-Type": "text/html; charset=utf-8",
+          "Cache-Control": "public, max-age=3600",
         },
       });
     }
 
-    if (url.pathname === "/api/leads" && request.method === "POST") {
-      return handleLeadPost(request, env);
+    // Canonical 301 redirect apex -> www
+    if (url.hostname === "assistenza-ai.it") {
+      return Response.redirect(`https://www.assistenza-ai.it${url.pathname}${url.search}`, 301);
+    }
+
+    // Lead API
+    if (url.pathname === "/api/leads") {
+      if (request.method === "POST") {
+        return handleLeadPost(request, env);
+      }
+      return Response.json({ ok: false, error: "Method not allowed" }, { status: 405 });
     }
 
     const res = await env.ASSETS.fetch(request);
+    const headers = new Headers(res.headers);
 
-    // Prevent indexing of workers.dev preview hostname
+    // Security headers
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    headers.set("X-Frame-Options", "SAMEORIGIN");
+    headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+
+    // Prevent indexing on preview workers.dev subdomain
     if (url.hostname.endsWith(".workers.dev")) {
-      const headers = new Headers(res.headers);
       headers.set("X-Robots-Tag", "noindex, nofollow");
-      return new Response(res.body, {
-        status: res.status,
-        statusText: res.statusText,
-        headers,
-      });
     }
 
-    return res;
+    // Long-term immutable cache for static assets
+    if (
+      IMMUTABLE_PREFIXES.some((p) => url.pathname.startsWith(p)) ||
+      IMMUTABLE_EXACT.has(url.pathname)
+    ) {
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    }
+
+    return new Response(res.body, {
+      status: res.status,
+      statusText: res.statusText,
+      headers,
+    });
   },
 };

@@ -185,8 +185,10 @@ export default function HomePage() {
                 href={`/settori/${v.slug}`}
                 className="group grid gap-2 py-5 transition-colors hover:bg-raised/70 sm:grid-cols-12 sm:items-center sm:px-3"
               >
-                <span className="font-mono text-[13px] font-medium text-ink-soft sm:col-span-1">
-                  0{idx + 1}
+                <span className="inline-flex items-center gap-2.5 font-mono text-[13px] font-medium text-ink-soft sm:col-span-1">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`/icons/${v.slug === "pmi-artigiani" ? "pmi" : v.slug}.svg`} alt="" width={20} height={20} className="h-5 w-5 shrink-0 opacity-80" />
+                  <span>0{idx + 1}</span>
                 </span>
                 <span className="text-[19px] font-semibold text-ink group-hover:text-rame sm:col-span-4">
                   {v.shortTitle}
