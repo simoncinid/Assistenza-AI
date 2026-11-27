@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
+import { Figtree, IBM_Plex_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -7,16 +7,18 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { getOrganizationJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const figtree = Figtree({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-figtree",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const jetbrains = JetBrains_Mono({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-ibm-plex-mono",
   display: "swap",
+  weight: ["500"],
 });
 
 const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
@@ -32,6 +34,9 @@ export const metadata: Metadata = {
   description:
     "Sviluppo e assistenza AI chiavi in mano per PMI, artigiani e studi italiani. Centralino AI 24/7 sul tuo numero, WhatsApp AI e automazioni su misura conformi GDPR e AI Act.",
   alternates: { canonical: "/" },
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
   openGraph: {
     type: "website",
     locale: "it_IT",
@@ -50,8 +55,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${jakarta.variable} ${jetbrains.variable}`}>
-      <body className="flex min-h-screen flex-col font-sans antialiased">
+    <html lang="it" className={`${figtree.variable} ${plexMono.variable}`}>
+      <body className="flex min-h-screen flex-col bg-surface font-sans text-ink antialiased">
         <JsonLd data={getOrganizationJsonLd()} />
         {ga4Id ? (
           <>

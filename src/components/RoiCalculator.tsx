@@ -30,28 +30,30 @@ export function RoiCalculator() {
   return (
     <section
       id="calcolatore-roi"
-      className="rounded-2xl border border-slate-200 bg-slate-900 p-6 text-white shadow-sm sm:p-8"
+      className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)] sm:p-8"
       aria-labelledby="roi-title"
     >
       <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-7">
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-amber-400">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
             Calcolatore chiamate perse
           </p>
-          <h2 id="roi-title" className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+          <h2 id="roi-title" className="mt-2 text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.03em] text-ink sm:text-[2.25rem]">
             Quanto ti costano le chiamate a cui non riesci a rispondere?
           </h2>
-          <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2.5 max-w-[60ch] text-[15px] leading-relaxed text-ink-soft">
             Muovi i cursori sui numeri reali della tua attività per stimare il fatturato che oggi finisce alla concorrenza.
           </p>
 
           <div className="mt-6 space-y-5">
             <div>
-              <div className="flex justify-between text-sm">
-                <label htmlFor="roi-calls" className="text-slate-200">
+              <div className="flex justify-between text-[14px]">
+                <label htmlFor="roi-calls" className="font-medium text-ink">
                   Chiamate perse a settimana mentre lavori
                 </label>
-                <span className="font-mono font-bold text-amber-300">{missedPerWeek} / sett</span>
+                <span className="font-mono font-medium tabular-nums text-rame">
+                  {missedPerWeek} / sett
+                </span>
               </div>
               <input
                 id="roi-calls"
@@ -61,16 +63,18 @@ export function RoiCalculator() {
                 step={1}
                 value={missedPerWeek}
                 onChange={(e) => setMissedPerWeek(Number(e.target.value))}
-                className="mt-2 w-full accent-amber-400"
+                className="mt-2 w-full accent-rame"
               />
             </div>
 
             <div>
-              <div className="flex justify-between text-sm">
-                <label htmlFor="roi-value" className="text-slate-200">
+              <div className="flex justify-between text-[14px]">
+                <label htmlFor="roi-value" className="font-medium text-ink">
                   Valore medio di un intervento o nuovo cliente
                 </label>
-                <span className="font-mono font-bold text-amber-300">{formatEur(avgJobValue)} €</span>
+                <span className="font-mono font-medium tabular-nums text-rame">
+                  {formatEur(avgJobValue)} €
+                </span>
               </div>
               <input
                 id="roi-value"
@@ -80,16 +84,18 @@ export function RoiCalculator() {
                 step={10}
                 value={avgJobValue}
                 onChange={(e) => setAvgJobValue(Number(e.target.value))}
-                className="mt-2 w-full accent-amber-400"
+                className="mt-2 w-full accent-rame"
               />
             </div>
 
             <div>
-              <div className="flex justify-between text-sm">
-                <label htmlFor="roi-conv" className="text-slate-200">
+              <div className="flex justify-between text-[14px]">
+                <label htmlFor="roi-conv" className="font-medium text-ink">
                   Chiamate che diventano clienti se rispondi subito
                 </label>
-                <span className="font-mono font-bold text-amber-300">{conversionPct}%</span>
+                <span className="font-mono font-medium tabular-nums text-rame">
+                  {conversionPct}%
+                </span>
               </div>
               <input
                 id="roi-conv"
@@ -99,29 +105,30 @@ export function RoiCalculator() {
                 step={5}
                 value={conversionPct}
                 onChange={(e) => setConversionPct(Number(e.target.value))}
-                className="mt-2 w-full accent-amber-400"
+                className="mt-2 w-full accent-rame"
               />
             </div>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-700 bg-slate-800/80 p-6 lg:col-span-5">
-          <p className="font-mono text-xs uppercase tracking-wider text-slate-400">
+        <div className="rounded-lg border border-line bg-surface p-6 lg:col-span-5">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
             Fatturato perso stimato
           </p>
-          <p className="mt-2 text-4xl font-extrabold tracking-tight text-white">
-            {formatEur(monthlyLost)} €<span className="text-lg font-medium text-slate-300"> / mese</span>
+          <p className="mt-2 font-sans text-[2.5rem] font-semibold leading-none tracking-[-0.03em] tabular-nums text-ink">
+            {formatEur(monthlyLost)} €
+            <span className="text-[16px] font-normal text-ink-soft"> / mese</span>
           </p>
-          <p className="mt-1 font-mono text-sm text-amber-300">
+          <p className="mt-2 font-mono text-[14px] font-medium tabular-nums text-rame">
             ≈ {formatEur(yearlyLost)} € / anno
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-slate-300">
+          <p className="mt-4 text-[14px] leading-relaxed text-ink-soft">
             Stima basata sui tuoi numeri: basta recuperare 2 chiamate al mese per ripagare il sistema.
           </p>
           <button
             type="button"
             onClick={handleSendToForm}
-            className="mt-6 w-full rounded-lg bg-amber-500 px-4 py-3 text-sm font-bold text-slate-950 transition hover:bg-amber-400"
+            className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
           >
             Blocca le chiamate perse sul tuo numero →
           </button>

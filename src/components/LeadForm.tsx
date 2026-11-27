@@ -49,9 +49,7 @@ export function LeadForm({
   useEffect(() => {
     const onPrefill = (e: Event) => {
       const custom = e as CustomEvent<{ note?: string }>;
-      if (custom.detail?.note) {
-        setMessage(custom.detail.note);
-      }
+      if (custom.detail?.note) setMessage(custom.detail.note);
     };
     window.addEventListener("assistenza_ai_prefill_note", onPrefill);
     return () => window.removeEventListener("assistenza_ai_prefill_note", onPrefill);
@@ -112,19 +110,27 @@ export function LeadForm({
     }
   }
 
+  const inputClass =
+    "mt-1.5 h-11 w-full rounded-md border border-line bg-raised px-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame";
+
   return (
-    <div id="contatti-form" className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-      <h2 className="text-2xl font-bold tracking-tight text-slate-900">{title}</h2>
-      <p className="mt-2 text-sm text-slate-600">{subtitle}</p>
+    <div
+      id="contatti-form"
+      className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)] sm:p-8"
+    >
+      <h2 className="text-[1.5rem] font-semibold leading-[1.2] tracking-[-0.02em] text-ink">
+        {title}
+      </h2>
+      <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{subtitle}</p>
 
       {status === "success" ? (
         <div
           role="status"
-          className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-950"
+          className="mt-6 rounded-lg border border-whatsapp/25 bg-whatsapp-bg p-4 text-[14px] text-ink"
         >
-          <p className="font-bold">Richiesta ricevuta!</p>
-          <p className="mt-1">
-            Ti ricontatteremo al più presto per mostrarti una simulazione concreta sul tuo settore.
+          <p className="font-semibold text-whatsapp">Richiesta ricevuta.</p>
+          <p className="mt-1 text-ink-soft">
+            Ti ricontatteremo entro 1 giorno lavorativo con una simulazione concreta sul tuo settore.
           </p>
         </div>
       ) : (
@@ -143,7 +149,7 @@ export function LeadForm({
           </div>
 
           <div>
-            <label htmlFor="lead-name" className="block text-sm font-medium text-slate-800">
+            <label htmlFor="lead-name" className="block text-[14px] font-medium text-ink">
               Nome e Azienda *
             </label>
             <input
@@ -155,13 +161,13 @@ export function LeadForm({
               placeholder="Es. Marco Rossi — Termoidraulica Rossi"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              className={inputClass}
             />
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="lead-phone" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="lead-phone" className="block text-[14px] font-medium text-ink">
                 Telefono / WhatsApp *
               </label>
               <input
@@ -171,12 +177,12 @@ export function LeadForm({
                 placeholder="Es. 333 1234567"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className={inputClass}
               />
             </div>
 
             <div>
-              <label htmlFor="lead-email" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="lead-email" className="block text-[14px] font-medium text-ink">
                 Email aziendale
               </label>
               <input
@@ -186,14 +192,14 @@ export function LeadForm({
                 placeholder="nome@azienda.it"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className={inputClass}
               />
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="lead-sector" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="lead-sector" className="block text-[14px] font-medium text-ink">
                 Settore *
               </label>
               <select
@@ -201,7 +207,7 @@ export function LeadForm({
                 name="sector"
                 value={sector}
                 onChange={(e) => setSector(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className={inputClass}
               >
                 {SECTORS.map((s) => (
                   <option key={s} value={s}>
@@ -212,7 +218,7 @@ export function LeadForm({
             </div>
 
             <div>
-              <label htmlFor="lead-need" className="block text-sm font-medium text-slate-800">
+              <label htmlFor="lead-need" className="block text-[14px] font-medium text-ink">
                 Esigenza principale *
               </label>
               <select
@@ -220,7 +226,7 @@ export function LeadForm({
                 name="need"
                 value={need}
                 onChange={(e) => setNeed(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className={inputClass}
               >
                 {NEEDS.map((n) => (
                   <option key={n} value={n}>
@@ -232,7 +238,7 @@ export function LeadForm({
           </div>
 
           <div>
-            <label htmlFor="lead-message" className="block text-sm font-medium text-slate-800">
+            <label htmlFor="lead-message" className="block text-[14px] font-medium text-ink">
               Note (opzionale)
             </label>
             <textarea
@@ -242,21 +248,21 @@ export function LeadForm({
               placeholder="Quante chiamate ricevi al giorno o cosa vorresti automatizzare?"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              className="mt-1.5 w-full rounded-md border border-line bg-raised px-3.5 py-2.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame"
             />
           </div>
 
-          <label className="flex items-start gap-2.5 text-xs text-slate-600">
+          <label className="flex items-start gap-2.5 text-[13px] leading-snug text-ink-soft">
             <input
               type="checkbox"
               required
               checked={gdprConsent}
               onChange={(e) => setGdprConsent(e.target.checked)}
-              className="mt-0.5 accent-blue-700"
+              className="mt-0.5 h-4 w-4 accent-rame"
             />
             <span>
-              Acconsento al trattamento dei dati per essere ricontattato in merito alla richiesta (
-              <a href="/privacy-policy" className="underline hover:text-slate-900">
+              Acconsento al trattamento dei dati per essere ricontattato (
+              <a href="/privacy-policy" className="text-rame underline underline-offset-2 hover:text-rame-hover">
                 Privacy Policy
               </a>
               ). Zero spam, nessuna cessione a terzi.
@@ -264,7 +270,7 @@ export function LeadForm({
           </label>
 
           {status === "error" && (
-            <p role="alert" className="text-sm font-medium text-red-600">
+            <p role="alert" className="text-[14px] font-medium text-rame">
               {errorMsg}
             </p>
           )}
@@ -272,15 +278,16 @@ export function LeadForm({
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="w-full rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-800 disabled:opacity-60"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover disabled:opacity-60"
           >
             {status === "submitting" ? "Invio in corso..." : "Richiedi demo gratuita (15 min)"}
           </button>
-          <p className="text-center text-xs text-slate-500">
-            Preferisci scrivere via email?{" "}
-            <a href={`mailto:${QUOTES_EMAIL}`} className="font-medium text-blue-700 hover:underline">
+
+          <p className="text-center text-[13px] text-ink-soft">
+            Risposta diretta da un tecnico in italiano entro 1 giorno lavorativo. Oppure scrivi a{" "}
+            <a href={`mailto:${QUOTES_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">
               {QUOTES_EMAIL}
-            </a>
+            </a>.
           </p>
         </form>
       )}

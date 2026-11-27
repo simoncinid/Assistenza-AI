@@ -3,26 +3,27 @@ import { INFO_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
-  description: "Informativa sui cookie per www.assistenza-ai.it: analisi aggregata cookie-less senza cookie di profilazione.",
+  description: "Informativa sull'utilizzo dei cookie e strumenti di misurazione su www.assistenza-ai.it.",
   alternates: { canonical: "/cookie-policy" },
 };
 
 export default function CookiePolicyPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
-      <h1 className="text-3xl font-extrabold text-slate-900">Cookie Policy</h1>
-      <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-700">
+    <div className="mx-auto max-w-[48rem] px-4 py-14 sm:px-6 lg:py-20">
+      <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">Informativa legale</p>
+      <h1 className="mt-2 font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-4xl">
+        Cookie Policy
+      </h1>
+      <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ink-soft">
         <p>
-          Il sito <strong>www.assistenza-ai.it</strong> non utilizza cookie di profilazione pubblicitaria né tracciamento cross-site.
+          Il sito <strong className="text-ink">www.assistenza-ai.it</strong> utilizza cookie tecnici indispensabili al funzionamento delle pagine e strumenti di analisi statistica aggregata (Google Analytics 4 con anonimizzazione IP) per migliorare i contenuti e le prestazioni del servizio.
         </p>
         <p>
-          Per le statistiche aggregate di traffico e prestazioni utilizziamo esclusivamente strumenti privacy-first cookie-less (Cloudflare Web Analytics), che non memorizzano cookie né identificatori personali sul dispositivo dell&apos;utente.
+          Non utilizziamo cookie di profilazione pubblicitaria di terze parti. Puoi gestire o disabilitare i cookie in qualsiasi momento dalle impostazioni del tuo browser.
         </p>
         <p>
-          Per domande scrivi a{" "}
-          <a href={`mailto:${INFO_EMAIL}`} className="font-semibold text-blue-700 hover:underline">
-            {INFO_EMAIL}
-          </a>.
+          Per chiarimenti scrivi a{" "}
+          <a href={`mailto:${INFO_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">{INFO_EMAIL}</a>.
         </p>
       </div>
     </div>

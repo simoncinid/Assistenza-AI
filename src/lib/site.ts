@@ -481,3 +481,25 @@ export function getFaqJsonLd(items: FaqItem[]) {
     })),
   };
 }
+
+export const HOME_FAQS = FAQ_ITEMS;
+
+export function getVerticalBySlug(slug: string): Vertical | undefined {
+  return VERTICALS.find((v) => v.slug === slug);
+}
+
+export function getServiceJsonLd(opts: { name: string; description: string; url: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    description: opts.description,
+    url: `${SITE_URL}${opts.url}`,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    areaServed: { "@type": "Country", name: "Italy" },
+  };
+}

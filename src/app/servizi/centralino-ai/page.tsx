@@ -1,106 +1,90 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CallSimulator } from "@/components/CallSimulator";
 import { RoiCalculator } from "@/components/RoiCalculator";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import {
-  FAQ_ITEMS,
-  getBreadcrumbJsonLd,
-  getFaqJsonLd,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/site";
+import { getServiceJsonLd, VERTICALS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Centralino AI 24/7 sul Tuo Numero",
+  title: "Centralino AI 24/7 per Artigiani, Studi e PMI",
   description:
-    "Centralino vocale AI in italiano per artigiani, studi e PMI. Si attiva solo quando non rispondi (*61*), filtra le urgenze e invia il riepilogo su WhatsApp. Conforme AI Act.",
+    "Segretaria AI vocale in italiano sul tuo numero attuale (*61*). Risponde in meno di 1 secondo, filtra urgenze e invia il riepilogo su WhatsApp.",
   alternates: { canonical: "/servizi/centralino-ai" },
 };
 
 export default function CentralinoAiPage() {
-  const serviceJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Centralino AI 24/7 sul Tuo Numero",
-    serviceType: "Centralino telefonico AI per PMI e artigiani",
-    provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-    areaServed: "IT",
-    url: `${SITE_URL}/servizi/centralino-ai`,
-  };
-
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <JsonLd data={serviceJsonLd} />
-      <JsonLd data={getFaqJsonLd(FAQ_ITEMS)} />
+    <>
       <JsonLd
-        data={getBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Servizi", path: "/servizi" },
-          { name: "Centralino AI", path: "/servizi/centralino-ai" },
-        ])}
+        data={getServiceJsonLd({
+          name: "Centralino AI 24/7 per PMI e Artigiani",
+          description:
+            "Assistente telefonico AI in italiano naturale sul numero esistente, con riepilogo WhatsApp istantaneo e conformità GDPR/AI Act.",
+          url: "/servizi/centralino-ai",
+        })}
       />
-
-      <div className="max-w-3xl">
-        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-          Centralino AI · Deviazione *61* · Conforme AI Act Art. 50
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+          Centralino AI 24/7
         </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-          Il Centralino AI che risponde al tuo posto solo quando non puoi farlo tu.
+        <h1 className="mt-2 max-w-[22ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+          Il centralino AI che risponde al tuo numero quando lavori
         </h1>
+        <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
+          Mantieni il tuo numero fisso o cellulare: grazie alla deviazione su mancata risposta (<span className="font-mono text-[15px] text-ink">*61*</span>), l&apos;assistente risponde solo quando non puoi farlo tu, raccoglie i dati del cliente e ti invia la scheda ordinata su WhatsApp.
+        </p>
 
-        <aside className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            In breve
-          </p>
-          <p className="mt-1.5 text-sm leading-relaxed text-slate-800">
-            Un centralino AI è un assistente vocale in italiano naturale che risponde alle chiamate in entrata quando sei occupato, non rispondi dopo 4–5 squilli o sei fuori orario. Non sostituisce il tuo numero: si collega tramite deviazione condizionata (<code className="rounded bg-slate-100 px-1 py-0.5 font-mono text-xs">*61*</code>), dichiara di essere un&apos;AI come richiesto dall&apos;Art. 50 dell&apos;AI Act (in vigore dal 2 agosto 2026) e ti invia subito trascrizione, urgenza e recapito su WhatsApp o email.
-          </p>
-        </aside>
-      </div>
+        <div className="mt-10">
+          <CallSimulator defaultSector="idraulici" />
+        </div>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {[
-          "Risponde entro 1 secondo, senza menu a tasti ('premi 1 per...').",
-          "Riconosce urgenze reali (guasto, blocco, perdita) e le separa dai preventivi.",
-          "Verifica indirizzo, zona servita e numero di richiamata.",
-          "Invia una scheda sintetica su WhatsApp o email entro 10 secondi.",
-          "Fissa sopralluoghi o appuntamenti su Google Calendar (opzionale).",
-          "Si disattiva o modifica con un semplice codice dal tuo telefono.",
-        ].map((point) => (
-          <div key={point} className="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-800">
-            <span className="font-mono font-bold text-blue-700">✓ </span>
-            {point}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Zero cambi numero</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Funziona con qualsiasi operatore italiano (TIM, Vodafone, WindTre, Iliad, Fastweb). Attivi o disattivi la deviazione in 5 secondi.
+            </p>
           </div>
-        ))}
-      </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Triage urgenze e zone</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Chiede problema, indirizzo e urgenza, comunica la tua tariffa di uscita e separa i clienti fuori zona dalle chiamate ad alto valore.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Conforme GDPR e AI Act</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Dichiara subito di essere un assistente virtuale (AI Act Art. 50) e tratta i dati nel rispetto del GDPR con conservazione controllata.
+            </p>
+          </div>
+        </div>
 
-      <div className="mt-12">
-        <CallSimulator defaultSector="idraulici" />
-      </div>
+        <div className="mt-12">
+          <RoiCalculator />
+        </div>
 
-      <div className="mt-12">
-        <RoiCalculator />
-      </div>
-
-      <div className="mt-14 grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <h2 className="text-2xl font-bold text-slate-900">Domande frequenti sul Centralino AI</h2>
-          <div className="mt-5 space-y-3">
-            {FAQ_ITEMS.map((item) => (
-              <details key={item.question} className="rounded-xl border border-slate-200 bg-white p-4">
-                <summary className="cursor-pointer text-sm font-bold text-slate-900">
-                  {item.question}
-                </summary>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.answer}</p>
-              </details>
+        <div className="mt-14">
+          <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em] text-ink">
+            Pagine dedicate per settore
+          </h2>
+          <div className="mt-4 flex flex-wrap gap-2.5">
+            {VERTICALS.map((v) => (
+              <Link
+                key={v.slug}
+                href={`/settori/${v.slug}`}
+                className="inline-flex min-h-10 items-center rounded-full border border-line bg-raised px-4 text-[14px] font-medium text-ink transition-colors hover:border-rame hover:text-rame"
+              >
+                {v.shortTitle}
+              </Link>
             ))}
           </div>
         </div>
-        <div className="lg:col-span-6">
-          <LeadForm defaultSector="Idraulico" defaultNeed="Centralino AI" title="Prenota una demo sul tuo settore" />
+
+        <div className="mt-14 max-w-2xl">
+          <LeadForm defaultNeed="Centralino AI" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,14 +1,64 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-figtree), "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-surface: #F7F6F3;
+  --color-raised: #FFFFFF;
+  --color-ink: #141413;
+  --color-ink-soft: #5C5954;
+  --color-line: #E6E3DD;
+  --color-rame: #A63618;
+  --color-rame-hover: #852910;
+  --color-rame-subtle: #FAF0EC;
+  --color-on-rame: #FFFFFF;
+  --color-dark: #141413;
+  --color-dark-elevated: #2A2927;
+  --color-urgente: #A63618;
+  --color-urgente-bg: #FAF0EC;
+  --color-appuntamento: #5C4A1C;
+  --color-appuntamento-bg: #F3EBDA;
+  --color-whatsapp: #1C5C3E;
+  --color-whatsapp-bg: #F6F8F6;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
 :root {
   color-scheme: light;
+  --shadow-sm:
+    0 0 0 1px rgba(20, 20, 19, 0.06),
+    0 2px 4px rgba(20, 20, 19, 0.04),
+    0 8px 24px rgba(20, 20, 19, 0.06);
+  --shadow-md:
+    0 0 0 1px rgba(20, 20, 19, 0.06),
+    0 4px 8px rgba(20, 20, 19, 0.04),
+    0 16px 40px rgba(20, 20, 19, 0.08);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 180ms;
 }
 
-body {
-  background-color: #fafaf9;
-  color: #0f172a;
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 0ms;
+  }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.font-mono {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+html, body {
+  background-color: #F7F6F3;
+  color: #141413;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid #A63618;
+  outline-offset: 2px;
 }

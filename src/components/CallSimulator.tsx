@@ -105,7 +105,7 @@ const SCENARIOS: Scenario[] = [
       {
         speaker: "cliente",
         text: "Devo fare il tagliando alla mia Golf 7 diesel, posso portarla giovedì mattina?",
-        extract: { label: "Intervento", value: "Tagliando VW Golf 7 Diesel · Preferenza: Giovedì mattina" },
+        extract: { label: "Intervento", value: "Tagliando VW Golf 7 Diesel · Giovedì mattina" },
       },
       {
         speaker: "ai",
@@ -116,7 +116,7 @@ const SCENARIOS: Scenario[] = [
   },
   {
     key: "studi-professionali",
-    tabLabel: "Studio Professionale",
+    tabLabel: "Studio",
     companyName: "Studio Dentistico Verdi",
     timeLabel: "Ore 13:10 · Pausa pranzo",
     scenarioTitle: "Nuovo paziente igiene dentale",
@@ -145,8 +145,10 @@ const SCENARIOS: Scenario[] = [
 
 export function CallSimulator({
   defaultSector = "idraulici",
+  compact = false,
 }: {
   defaultSector?: SimulatorSectorKey;
+  compact?: boolean;
 }) {
   const [selectedKey, setSelectedKey] = useState<SimulatorSectorKey>(defaultSector);
   const [visibleCount, setVisibleCount] = useState<number>(1);
@@ -179,13 +181,11 @@ export function CallSimulator({
     stopPlayback();
     setSelectedKey(key);
     setVisibleCount(1);
-    trackEvent("demo_tab_change", { sector: key });
+    trackEvent("demo_tab_change", { verticale: key });
   }
 
   function speakText(text: string) {
-    if (!audioEnabled || typeof window === "undefined" || !("speechSynthesis" in window)) {
-      return;
-    }
+    if (!audioEnabled || typeof window === "undefined" || !("speechSynthesis" in window)) return;
     try {
       window.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(text);
@@ -199,11 +199,22 @@ export function CallSimulator({
 
   function startSimulation() {
     stopPlayback();
-    trackEvent("demo_start", { verticale: scenario.tabLabel, esigenza: "Centralino AI", mode: instantMode ? "instant" : "normal" });
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (instantMode) {
+    trackEvent("demo_start", {
+      verticale: scenario.tabLabel,
+      esigenza: "Centralino AI",
+      mode: instantMode || reducedMotion ? "instant" : "normal",
+    });
+
+    if (instantMode || reducedMotion) {
       setVisibleCount(scenario.turns.length);
-      trackEvent("demo_complete", { verticale: scenario.tabLabel, esigenza: "Centralino AI", sector: scenario.key });
+      trackEvent("demo_complete", {
+        verticale: scenario.tabLabel,
+        esigenza: "Centralino AI",
+      });
       return;
     }
 
@@ -215,19 +226,20 @@ export function CallSimulator({
     const advance = () => {
       step += 1;
       setVisibleCount(step);
-      if (step <= scenario.turns.length) {
-        const currentTurn = scenario.turns[step - 1];
-        if (currentTurn) speakText(currentTurn.text);
-      }
+      const currentTurn = scenario.turns[step - 1];
+      if (currentTurn) speakText(currentTurn.text);
       if (step < scenario.turns.length) {
-        timerRef.current = setTimeout(advance, 1650);
+        timerRef.current = setTimeout(advance, 1550);
       } else {
         setIsPlaying(false);
-        trackEvent("demo_complete", { verticale: scenario.tabLabel, esigenza: "Centralino AI", sector: scenario.key });
+        trackEvent("demo_complete", {
+          verticale: scenario.tabLabel,
+          esigenza: "Centralino AI",
+        });
       }
     };
 
-    timerRef.current = setTimeout(advance, 1500);
+    timerRef.current = setTimeout(advance, 1450);
   }
 
   const extractedItems = scenario.turns
@@ -238,180 +250,173 @@ export function CallSimulator({
   return (
     <section
       id="simulatore"
-      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8"
+      className="overflow-hidden rounded-xl bg-raised shadow-[var(--shadow-md)]"
       aria-labelledby="simulatore-title"
     >
-      <div className="flex flex-col justify-between gap-4 border-b border-slate-200 pb-5 lg:flex-row lg:items-end">
-        <div>
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-            Demo interattiva · Zero costi API
-          </p>
-          <h2 id="simulatore-title" className="mt-1 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
-            Simula una chiamata reale sul tuo settore
-          </h2>
-          <p className="mt-1.5 text-sm text-slate-600">
-            Scegli il tuo mestiere e guarda come il Centralino AI risponde in italiano (conforme AI Act Art. 50) e ti prepara il riepilogo su WhatsApp in 10 secondi.
-          </p>
+      {/* macOS-clean top window chrome */}
+      <div className="flex items-center justify-between border-b border-line bg-surface px-4 py-2.5 sm:px-5">
+        <div className="flex items-center gap-1.5" aria-hidden="true">
+          <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+        </div>
+        <p id="simulatore-title" className="text-[13px] font-semibold text-ink-soft">
+          Simulatore Centralino AI
+        </p>
+        <span className="font-mono text-[11px] font-medium text-ink-soft">Art. 50 AI Act</span>
+      </div>
+
+      <div className={compact ? "p-4 sm:p-5" : "p-5 sm:p-7"}>
+        {/* Sector Tabs */}
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Settori simulatore">
+          {SCENARIOS.map((s) => {
+            const active = s.key === scenario.key;
+            return (
+              <button
+                key={s.key}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => handleSelectTab(s.key)}
+                className={`min-h-9 rounded-full px-3.5 text-[13px] font-semibold transition-colors ${
+                  active
+                    ? "bg-ink text-white"
+                    : "border border-line bg-surface text-ink-soft hover:text-ink"
+                }`}
+              >
+                {s.tabLabel}
+              </button>
+            );
+          })}
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-600">
-          <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5">
+        {/* Options directly below tabs */}
+        <div className="mt-3 flex flex-wrap items-center gap-4 text-[12px] text-ink-soft">
+          <label className="inline-flex cursor-pointer items-center gap-1.5">
             <input
               type="checkbox"
               checked={instantMode}
               onChange={(e) => setInstantMode(e.target.checked)}
-              className="accent-blue-700"
+              className="accent-rame"
             />
-            Modalità istantanea
+            Istantanea
           </label>
-          <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5">
+          <label className="inline-flex cursor-pointer items-center gap-1.5">
             <input
               type="checkbox"
               checked={audioEnabled}
               onChange={(e) => setAudioEnabled(e.target.checked)}
-              className="accent-blue-700"
+              className="accent-rame"
             />
             Audio voce IT
           </label>
         </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Settori simulatore">
-        {SCENARIOS.map((s) => {
-          const active = s.key === scenario.key;
-          return (
-            <button
-              key={s.key}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              onClick={() => handleSelectTab(s.key)}
-              className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${
-                active
-                  ? "bg-slate-900 text-white"
-                  : "border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
-              }`}
-            >
-              {s.tabLabel}
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Main 2-column simulation */}
-      <div className="mt-6 grid gap-6 lg:grid-cols-12">
-        {/* Left: Call transcript */}
-        <div className="flex flex-col rounded-xl border border-slate-200 bg-slate-50 p-4 sm:p-5 lg:col-span-7">
-          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
-            <div>
-              <p className="text-sm font-bold text-slate-900">{scenario.companyName}</p>
-              <p className="font-mono text-xs text-slate-500">
-                {scenario.timeLabel} · {scenario.scenarioTitle}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={startSimulation}
-              className="rounded-lg bg-blue-700 px-4 py-2 text-xs font-semibold text-white transition hover:bg-blue-800"
-            >
-              {isPlaying
-                ? "Simulazione in corso..."
-                : isComplete
-                  ? "Riproduci di nuovo"
-                  : "Avvia simulazione chiamata"}
-            </button>
-          </div>
-
-          <div className="mt-4 space-y-3">
-            {scenario.turns.slice(0, visibleCount).map((turn, index) => (
-              <div
-                key={`${scenario.key}-${index}`}
-                className={`rounded-xl px-4 py-3 text-sm leading-relaxed ${
-                  turn.speaker === "ai"
-                    ? "border border-blue-200 bg-white text-slate-800"
-                    : "ml-4 border border-slate-200 bg-slate-900 text-slate-50"
-                }`}
+        {/* Call + WhatsApp summary panes */}
+        <div className={`mt-4 grid gap-4 ${compact ? "grid-cols-1" : "lg:grid-cols-12"}`}>
+          {/* Call pane */}
+          <div className={`rounded-lg border border-line bg-surface p-4 ${compact ? "" : "lg:col-span-7"}`}>
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div>
+                <p className="text-[14px] font-semibold text-ink">{scenario.companyName}</p>
+                <p className="font-mono text-[11px] font-medium text-ink-soft">
+                  {scenario.timeLabel}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={startSimulation}
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-rame px-4 text-[14px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
               >
-                <p
-                  className={`mb-1 font-mono text-[11px] font-semibold uppercase tracking-wide ${
-                    turn.speaker === "ai" ? "text-blue-700" : "text-amber-300"
+                {isPlaying
+                  ? "Chiamata in corso..."
+                  : isComplete
+                    ? "Riproduci"
+                    : "Avvia simulazione"}
+              </button>
+            </div>
+
+            <div className="mt-3.5 space-y-2.5">
+              {scenario.turns.slice(0, visibleCount).map((turn, index) => (
+                <div
+                  key={`${scenario.key}-${index}`}
+                  className={`rounded-md px-3.5 py-2.5 text-[14px] leading-relaxed ${
+                    turn.speaker === "ai"
+                      ? "border border-line bg-raised text-ink"
+                      : "ml-4 bg-ink text-[#F7F6F3]"
                   }`}
                 >
-                  {turn.speaker === "ai" ? "Centralino AI · Risposta < 1s" : "Cliente al telefono"}
-                </p>
-                <p>{turn.text}</p>
-              </div>
-            ))}
+                  <p
+                    className={`mb-0.5 font-mono text-[10px] font-medium uppercase tracking-wider ${
+                      turn.speaker === "ai" ? "text-rame" : "text-[#C7C4BC]"
+                    }`}
+                  >
+                    {turn.speaker === "ai" ? "Assistente AI · < 1s" : "Cliente"}
+                  </p>
+                  <p>{turn.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {!isComplete && !isPlaying && (
-            <p className="mt-4 text-xs text-slate-500">
-              Premi &ldquo;Avvia simulazione chiamata&rdquo; per vedere il dialogo completo e la scheda WhatsApp compilarsi in diretta.
-            </p>
-          )}
-        </div>
-
-        {/* Right: WhatsApp summary card */}
-        <div className="flex flex-col justify-between rounded-xl border border-emerald-200 bg-[#F0FDF4] p-4 sm:p-5 lg:col-span-5">
-          <div>
-            <div className="flex items-center justify-between border-b border-emerald-200 pb-3">
-              <div>
-                <p className="font-mono text-[11px] font-semibold uppercase tracking-wide text-emerald-800">
-                  Riepilogo WhatsApp · +10 sec
+          {/* WhatsApp summary pane */}
+          <div
+            className={`flex flex-col justify-between rounded-lg border border-whatsapp/20 bg-whatsapp-bg p-4 ${
+              compact ? "" : "lg:col-span-5"
+            }`}
+          >
+            <div>
+              <div className="flex items-center justify-between gap-2 border-b border-whatsapp/15 pb-2.5">
+                <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-whatsapp">
+                  Scheda WhatsApp · +10s
                 </p>
-                <p className="text-sm font-bold text-slate-900">Scheda ricevuta sul tuo telefono</p>
+                <span
+                  className={`rounded-full px-2.5 py-0.5 font-mono text-[10px] font-medium uppercase tracking-wide ${
+                    scenario.badgeType === "urgente"
+                      ? "bg-urgente-bg text-urgente"
+                      : "bg-appuntamento-bg text-appuntamento"
+                  }`}
+                >
+                  {scenario.badgeText}
+                </span>
               </div>
-              <span
-                className={`rounded-full px-2.5 py-1 font-mono text-[11px] font-bold ${
-                  scenario.badgeType === "urgente"
-                    ? "bg-red-100 text-red-800"
-                    : "bg-amber-100 text-amber-900"
-                }`}
+
+              <div className="mt-3 rounded-md border border-black/6 bg-raised p-3.5">
+                <p className="text-[14px] font-semibold text-ink">{scenario.summaryHeadline}</p>
+                {extractedItems.length === 0 ? (
+                  <p className="mt-2 text-[13px] text-ink-soft">
+                    Premi &ldquo;Avvia simulazione&rdquo; per vedere la scheda compilarsi in diretta.
+                  </p>
+                ) : (
+                  <dl className="mt-2.5 space-y-2 text-[13px]">
+                    {extractedItems.map((item) => (
+                      <div key={item.label} className="border-t border-line pt-2">
+                        <dt className="font-mono text-[10px] uppercase tracking-wider text-ink-soft">
+                          {item.label}
+                        </dt>
+                        <dd className="mt-0.5 font-medium text-ink">{item.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+                {isComplete && (
+                  <p className="mt-3 border-l-2 border-whatsapp pl-2.5 text-[12px] text-ink-soft">
+                    {scenario.footerNote}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="mt-3.5 flex items-center justify-between gap-3 pt-1">
+              <span className="text-[12px] text-ink-soft">Zero API · demo reale</span>
+              <a
+                href="#contatti-form"
+                onClick={() => trackEvent("cta_click", { label: "simulator_cta", verticale: scenario.tabLabel })}
+                className="text-[13px] font-semibold text-rame hover:text-rame-hover"
               >
-                {scenario.badgeText}
-              </span>
+                Attivalo sul tuo numero →
+              </a>
             </div>
-
-            <div className="mt-4 rounded-xl border border-emerald-200 bg-white p-4 shadow-xs">
-              <p className="text-sm font-bold text-slate-900">{scenario.summaryHeadline}</p>
-
-              {extractedItems.length === 0 ? (
-                <p className="mt-3 text-xs text-slate-500">
-                  In attesa dei dati raccolti dalla chiamata...
-                </p>
-              ) : (
-                <dl className="mt-3 space-y-2.5 text-xs">
-                  {extractedItems.map((item) => (
-                    <div key={item.label} className="border-t border-slate-100 pt-2">
-                      <dt className="font-mono text-[10px] uppercase tracking-wider text-slate-500">
-                        {item.label}
-                      </dt>
-                      <dd className="mt-0.5 font-medium text-slate-900">{item.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              )}
-
-              {isComplete && (
-                <p className="mt-3 rounded-lg bg-slate-50 p-2.5 text-xs text-slate-700">
-                  {scenario.footerNote}
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-4 flex items-center justify-between gap-3 pt-2">
-            <span className="font-mono text-[11px] text-emerald-900">
-              Conforme Art. 50 AI Act
-            </span>
-            <a
-              href="#contatti-form"
-              onClick={() => trackEvent("cta_click", { label: "simulator_cta", sector: scenario.key })}
-              className="rounded-lg bg-emerald-700 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-emerald-800"
-            >
-              Attivalo sul tuo numero →
-            </a>
           </div>
         </div>
       </div>

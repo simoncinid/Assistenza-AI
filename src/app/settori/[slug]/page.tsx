@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { CallSimulator } from "@/components/CallSimulator";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import {
-  getBreadcrumbJsonLd,
-  getFaqJsonLd,
-  SITE_NAME,
-  SITE_URL,
-  VERTICALS,
-} from "@/lib/site";
+import { getFaqJsonLd, getServiceJsonLd, getVerticalBySlug, VERTICALS } from "@/lib/site";
 
 export function generateStaticParams() {
   return VERTICALS.map((v) => ({ slug: v.slug }));
@@ -21,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const vertical = VERTICALS.find((v) => v.slug === slug);
+  const vertical = getVerticalBySlug(slug);
   if (!vertical) return {};
   return {
     title: vertical.metaTitle,
@@ -36,104 +31,103 @@ export default async function VerticalPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const vertical = VERTICALS.find((v) => v.slug === slug);
+  const vertical = getVerticalBySlug(slug);
   if (!vertical) notFound();
 
-  const serviceJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: `AI per ${vertical.name}`,
-    serviceType: vertical.metaTitle,
-    description: vertical.metaDescription,
-    url: `${SITE_URL}/settori/${vertical.slug}`,
-    provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-    areaServed: "IT",
-  };
-
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-      <JsonLd data={serviceJsonLd} />
+    <>
       <JsonLd data={getFaqJsonLd(vertical.faqs)} />
       <JsonLd
-        data={getBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: vertical.name, path: `/settori/${vertical.slug}` },
-        ])}
+        data={getServiceJsonLd({
+          name: vertical.metaTitle,
+          description: vertical.metaDescription,
+          url: `/settori/${vertical.slug}`,
+        })}
       />
 
-      <div className="max-w-3xl">
-        <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-          Settore · {vertical.name}
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+          Soluzione per {vertical.shortTitle}
         </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="mt-2 max-w-[26ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
           {vertical.h1}
         </h1>
-        <aside className="mt-6 rounded-xl border border-slate-200 bg-white p-5">
-          <p className="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-500">
-            In breve
-          </p>
-          <p className="mt-1.5 text-sm leading-relaxed text-slate-800">{vertical.inBreve}</p>
-        </aside>
-      </div>
+        <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
+          {vertical.inBreve}
+        </p>
 
-      {/* 4 Real situations */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-bold text-slate-900">
-          4 situazioni reali che gestisce ogni giorno
-        </h2>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2">
-          {vertical.situations.map((s) => (
-            <div key={s.title} className="rounded-xl border border-slate-200 bg-white p-5">
-              <h3 className="font-bold text-slate-900">{s.title}</h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{s.detail}</p>
-            </div>
-          ))}
+        <div className="mt-7 flex flex-wrap gap-3">
+          <a
+            href="#contatti-form"
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
+          >
+            Richiedi una demo sul tuo settore
+          </a>
+          <Link
+            href="/servizi/centralino-ai"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-line px-5 text-[15px] font-semibold text-ink transition-colors hover:bg-raised"
+          >
+            Come funziona il Centralino AI
+          </Link>
         </div>
-      </section>
 
-      {/* Pre-selected interactive demo */}
-      <div className="mt-12">
-        <CallSimulator defaultSector={vertical.simulatorKey} />
-      </div>
+        <div className="mt-10">
+          <CallSimulator defaultSector={vertical.simulatorKey} />
+        </div>
 
-      {/* When NOT needed + Lead Form */}
-      <div className="mt-14 grid gap-10 lg:grid-cols-12">
-        <div className="space-y-8 lg:col-span-6">
-          <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-6">
-            <h2 className="text-lg font-bold text-slate-900">Quando NON ti serve</h2>
-            <ul className="mt-3 space-y-2 text-sm text-slate-800">
-              {vertical.whenNotNeeded.map((item) => (
-                <li key={item}>• {item}</li>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <section className="rounded-xl bg-raised p-7 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[20px] font-semibold text-ink">Situazioni tipiche gestite</h2>
+            <ul className="mt-4 space-y-4 text-[15px] leading-relaxed text-ink-soft">
+              {vertical.situations.map((s) => (
+                <li key={s.title}>
+                  <p className="font-semibold text-ink">{s.title}</p>
+                  <p className="mt-0.5">{s.detail}</p>
+                </li>
               ))}
             </ul>
+          </section>
+
+          <section className="rounded-xl bg-raised p-7 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[20px] font-semibold text-ink">Quando NON ti serve</h2>
+            <ul className="mt-4 space-y-3 border-l-2 border-ink/25 pl-4 text-[15px] leading-relaxed text-ink-soft">
+              {vertical.whenNotNeeded.map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-12">
+          <div className="order-1 lg:order-2 lg:col-span-6">
+            <LeadForm
+              defaultSector={vertical.defaultSector}
+              defaultNeed={vertical.defaultNeed}
+              title={`Attivalo per la tua attività (${vertical.shortTitle})`}
+            />
           </div>
 
-          <div>
-            <h2 className="text-2xl font-bold text-slate-900">
-              Domande frequenti ({vertical.name})
+          <div className="order-2 lg:order-1 lg:col-span-6">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+              FAQ {vertical.shortTitle}
+            </p>
+            <h2 className="mt-2 text-[1.625rem] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
+              Domande frequenti
             </h2>
-            <div className="mt-4 space-y-3">
+            <div className="mt-6 divide-y divide-line border-t border-line">
               {vertical.faqs.map((faq) => (
-                <details key={faq.question} className="rounded-xl border border-slate-200 bg-white p-4">
-                  <summary className="cursor-pointer text-sm font-bold text-slate-900">
-                    {faq.question}
+                <details key={faq.question} className="group py-4">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+                    <span>{faq.question}</span>
+                    <span className="font-mono text-[16px] text-rame transition-transform group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
+                  <p className="mt-2.5 text-[15px] leading-relaxed text-ink-soft">{faq.answer}</p>
                 </details>
               ))}
             </div>
           </div>
         </div>
-
-        <div className="lg:col-span-6">
-          <LeadForm
-            defaultSector={vertical.defaultSector}
-            defaultNeed={vertical.defaultNeed}
-            title={`Richiedi una demo per ${vertical.name}`}
-            subtitle="Ti mostriamo come funziona sul tuo numero attuale, senza impegno."
-          />
-        </div>
       </div>
-    </div>
+    </>
   );
 }

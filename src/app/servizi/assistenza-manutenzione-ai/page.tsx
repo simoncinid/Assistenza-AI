@@ -1,51 +1,62 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import { getBreadcrumbJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getServiceJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Assistenza e Manutenzione AI per Aziende",
+  title: "Assistenza e Manutenzione Sistemi AI per Aziende",
   description:
-    "Assistenza AI continua in italiano per PMI e artigiani: configuriamo, monitoriamo e aggiorniamo i tuoi assistenti e automazioni nel tempo.",
+    "Supporto tecnico continuativo in italiano per centralini AI, chatbot WhatsApp e automazioni aziendali: monitoraggio, aggiornamenti e controllo costi.",
   alternates: { canonical: "/servizi/assistenza-manutenzione-ai" },
 };
 
 export default function AssistenzaManutenzionePage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+    <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
+        data={getServiceJsonLd({
           name: "Assistenza e Manutenzione AI",
-          provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-          areaServed: "IT",
-        }}
+          description:
+            "Supporto tecnico continuativo, aggiornamento prompt/modelli e monitoraggio per sistemi AI aziendali in Italia.",
+          url: "/servizi/assistenza-manutenzione-ai",
+        })}
       />
-      <JsonLd
-        data={getBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Servizi", path: "/servizi" },
-          { name: "Assistenza e Manutenzione AI", path: "/servizi/assistenza-manutenzione-ai" },
-        ])}
-      />
-      <div className="grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-            Supporto continuativo in italiano
-          </p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-            Assistenza AI continua in italiano: configuriamo, monitoriamo, aggiorniamo.
-          </h1>
-          <aside className="mt-6 rounded-xl border border-slate-200 bg-white p-5 text-sm leading-relaxed text-slate-800">
-            <strong className="block font-mono text-[11px] uppercase text-slate-500">In breve</strong>
-            Un sistema AI non si abbandona dopo l&apos;installazione. Seguiamo nel tempo i tuoi assistenti vocali, WhatsApp e automazioni: aggiorniamo orari, ferie, listini e monitoriamo la qualità delle risposte.
-          </aside>
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+          Assistenza e Manutenzione AI
+        </p>
+        <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+          I tuoi sistemi AI sempre aggiornati, senza pensieri
+        </h1>
+        <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
+          I modelli e le API cambiano ogni mese. Con il nostro supporto continuativo hai un referente tecnico in italiano che monitora la qualità delle risposte, aggiorna orari e listini e tiene sotto controllo i consumi.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Revisione conversazioni</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Affiniamo periodicamente le risposte sui casi reali dei tuoi clienti per aumentare precisione e conversioni.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Aggiornamenti rapidi</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Chiusure per ferie, nuove tariffe o nuovi servizi: ci mandi un messaggio e aggiorniamo tutto noi.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Controllo costi e uptime</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Verifichiamo stabilità, latenza e costi delle API così il sistema resta veloce e prevedibile.
+            </p>
+          </div>
         </div>
-        <div className="lg:col-span-5">
-          <LeadForm defaultSector="PMI" defaultNeed="Assistenza AI" title="Parla con un tecnico" />
+
+        <div className="mt-14 max-w-2xl">
+          <LeadForm defaultSector="PMI" defaultNeed="Assistenza AI" title="Hai già un'automazione AI da stabilizzare?" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

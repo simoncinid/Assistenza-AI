@@ -1,56 +1,62 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import { getBreadcrumbJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getServiceJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Sviluppo AI su Misura per PMI Italiane",
   description:
-    "Automazioni AI integrate con i tuoi gestionali, documenti, fatture passive, DDT e CRM per ridurre il data entry manuale nelle PMI italiane.",
+    "Sviluppiamo automazioni AI concrete per PMI: preventivi rapidi, triage email, integrazioni CRM e gestionali aziendali senza cambiare i tuoi strumenti.",
   alternates: { canonical: "/servizi/sviluppo-ai-pmi" },
 };
 
 export default function SviluppoAiPmiPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+    <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Sviluppo AI su Misura per PMI",
-          provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-          areaServed: "IT",
-        }}
+        data={getServiceJsonLd({
+          name: "Sviluppo AI su misura per PMI",
+          description:
+            "Progettazione e sviluppo di automazioni AI collegate a email, CRM, documenti e gestionali per PMI italiane.",
+          url: "/servizi/sviluppo-ai-pmi",
+        })}
       />
-      <JsonLd
-        data={getBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Servizi", path: "/servizi" },
-          { name: "Sviluppo AI PMI", path: "/servizi/sviluppo-ai-pmi" },
-        ])}
-      />
-      <div className="grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-            Sviluppo AI su misura · PMI
-          </p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-            Automazioni AI integrate con i tuoi gestionali, documenti e CRM.
-          </h1>
-          <aside className="mt-6 rounded-xl border border-slate-200 bg-white p-5 text-sm leading-relaxed text-slate-800">
-            <strong className="block font-mono text-[11px] uppercase text-slate-500">In breve</strong>
-            Sviluppiamo flussi AI concreti per PMI italiane: estrazione dati da DDT e fatture passive, preparazione bozze preventivi, smistamento email commerciali e integrazione sicura con ERP/CRM esistenti nel rispetto del GDPR.
-          </aside>
-          <ul className="mt-6 space-y-3 text-sm text-slate-700">
-            <li>• Nessun cambio di gestionale: lavoriamo sopra gli strumenti che usi già.</li>
-            <li>• Ambiente aziendale isolato, senza usare i tuoi documenti per addestrare modelli esterni.</li>
-            <li>• Rilascio progressivo partendo dal processo con il ritorno economico più rapido.</li>
-          </ul>
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+          Sviluppo AI per PMI
+        </p>
+        <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+          Automazioni AI costruite sui tuoi flussi reali
+        </h1>
+        <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
+          Colleghiamo l&apos;intelligenza artificiale agli strumenti che usi già — email, Google Workspace, Notion, CRM e gestionali — per togliere ore di inserimento manuale ogni settimana.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Triage email e richieste</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Classifica ordini, richieste preventivo e ticket assistenza preparando bozze di risposta pronte da approvare.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Estrazione dati da PDF</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Legge listini, DDT, bolle e richieste tecniche e li inserisce in formato pulito nel tuo gestionale o foglio di calcolo.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Assistenti interni su documenti</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Manuali, procedure e cataloghi interrogabili in secondi dai tuoi tecnici e commerciali, con dati protetti.
+            </p>
+          </div>
         </div>
-        <div className="lg:col-span-5">
-          <LeadForm defaultSector="PMI" defaultNeed="Automazione PMI" title="Prenota un audit gratuito" />
+
+        <div className="mt-14 max-w-2xl">
+          <LeadForm defaultSector="PMI" defaultNeed="Automazione PMI" title="Parliamo del tuo progetto AI" />
         </div>
       </div>
-    </div>
+    </>
   );
 }

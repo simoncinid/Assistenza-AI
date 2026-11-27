@@ -1,56 +1,62 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
-import { getBreadcrumbJsonLd, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getServiceJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Automazione WhatsApp AI per PMI e Artigiani",
   description:
-    "Rispondi su WhatsApp H24, qualifica i clienti, raccogli foto dei guasti e fissa appuntamenti su Google Calendar senza perdere ore in chat.",
+    "Risposte automatiche intelligenti su WhatsApp Business: raccolta foto guasti, promemoria appuntamenti e qualificazione richieste 24/7.",
   alternates: { canonical: "/servizi/automazione-whatsapp-ai" },
 };
 
-export default function WhatsAppAiPage() {
+export default function AutomazioneWhatsappPage() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+    <>
       <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Automazione WhatsApp AI",
-          provider: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-          areaServed: "IT",
-        }}
+        data={getServiceJsonLd({
+          name: "Automazione WhatsApp AI per PMI",
+          description:
+            "Assistente WhatsApp Business AI per raccogliere foto, rispondere a richieste ripetitive e confermare appuntamenti automaticamente.",
+          url: "/servizi/automazione-whatsapp-ai",
+        })}
       />
-      <JsonLd
-        data={getBreadcrumbJsonLd([
-          { name: "Home", path: "/" },
-          { name: "Servizi", path: "/servizi" },
-          { name: "Automazione WhatsApp AI", path: "/servizi/automazione-whatsapp-ai" },
-        ])}
-      />
-      <div className="grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <p className="font-mono text-xs font-semibold uppercase tracking-wider text-blue-700">
-            WhatsApp Business AI
-          </p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-slate-900">
-            Rispondi su WhatsApp H24, qualifica i clienti e fissa appuntamenti.
-          </h1>
-          <aside className="mt-6 rounded-xl border border-slate-200 bg-white p-5 text-sm leading-relaxed text-slate-800">
-            <strong className="block font-mono text-[11px] uppercase text-slate-500">In breve</strong>
-            L&apos;assistente WhatsApp AI risponde in pochi secondi a messaggi di testo e note vocali, raccoglie foto del lavoro o codice articolo, filtra le zone non servite e propone gli slot liberi sul tuo Google Calendar.
-          </aside>
-          <ul className="mt-6 space-y-3 text-sm text-slate-700">
-            <li>• Risposta immediata anche la sera e nel fine settimana.</li>
-            <li>• Raccolta guidata di foto, indirizzo, targa o modello prima di farti richiamare.</li>
-            <li>• Promemoria automatici prima dell&apos;appuntamento per ridurre i mancati arrivi.</li>
-          </ul>
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+          Automazione WhatsApp AI
+        </p>
+        <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+          Rispondi ai clienti su WhatsApp anche mentre sei operativo
+        </h1>
+        <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
+          Trasforma WhatsApp in un canale ordinato: l&apos;assistente chiede foto del problema o modello del pezzo, risponde su orari e zone coperte e invia promemoria automatici prima di ogni appuntamento.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Raccolta foto e dettagli</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Prima ancora di richiamare hai già foto della caldaia, del quadro elettrico o della targa, così arrivi con il ricambio giusto.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Promemoria anti-assenza</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Conferme automatiche il giorno prima dell&apos;appuntamento per ridurre drasticamente i buchi in agenda.
+            </p>
+          </div>
+          <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
+            <h2 className="text-[18px] font-semibold text-ink">Passaggio a te in un tap</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
+              Quando serve la tua valutazione umana, l&apos;AI si ferma e ti passa la conversazione completa con il riepilogo.
+            </p>
+          </div>
         </div>
-        <div className="lg:col-span-5">
-          <LeadForm defaultSector="PMI" defaultNeed="WhatsApp AI" title="Richiedi analisi gratuita" />
+
+        <div className="mt-14 max-w-2xl">
+          <LeadForm defaultNeed="WhatsApp AI" title="Vuoi automatizzare WhatsApp nella tua azienda?" />
         </div>
       </div>
-    </div>
+    </>
   );
 }
