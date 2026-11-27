@@ -121,6 +121,12 @@ async function handleLeadPost(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/googlea029d6c275f7abea.html") {
+      return new Response("google-site-verification: googlea029d6c275f7abea.html\n", {
+        status: 200,
+        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=300" },
+      });
+    }
     if (url.pathname === "/api/leads" && request.method === "POST") {
       return handleLeadPost(request, env);
     }
