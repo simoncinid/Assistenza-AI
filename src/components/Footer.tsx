@@ -1,10 +1,6 @@
 import Link from "next/link";
 import {
-  BUSINESS_ADDRESS,
-  BUSINESS_PHONE_DISPLAY,
-  BUSINESS_PHONE_HREF,
   INFO_EMAIL,
-  OWNER_NAME,
   SITE_NAME,
   VAT_NUMBER,
   VERTICALS,
@@ -35,16 +31,8 @@ export function Footer() {
                 {INFO_EMAIL}
               </a>
             </p>
-            <p>
-              Telefono:{" "}
-              <a href={BUSINESS_PHONE_HREF} className="text-[#F7F6F3] underline underline-offset-2 hover:text-white">
-                {BUSINESS_PHONE_DISPLAY}
-              </a>
-            </p>
             <p className="pt-1 text-[#9E9B94]">
-              {OWNER_NAME} · P.IVA {VAT_NUMBER}
-              <br />
-              {BUSINESS_ADDRESS}
+              P.IVA {VAT_NUMBER}
             </p>
           </div>
         </div>
@@ -84,7 +72,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-4 py-5 text-center text-[13px] text-[#9E9B94]">
-        © {new Date().getFullYear()} {SITE_NAME} · {OWNER_NAME} · P.IVA {VAT_NUMBER} · {BUSINESS_ADDRESS} · Conformità GDPR e AI Act Art. 50
+        © {new Date().getFullYear()} {SITE_NAME} · P.IVA {VAT_NUMBER} · {INFO_EMAIL} · Conformità GDPR e AI Act Art. 50
       </div>
     </footer>
   );

@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
-import {
-  BUSINESS_ADDRESS,
-  BUSINESS_PHONE_DISPLAY,
-  BUSINESS_PHONE_HREF,
-  INFO_EMAIL,
-  OWNER_NAME,
-  VAT_NUMBER,
-} from "@/lib/site";
+import { INFO_EMAIL, VAT_NUMBER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contatti e Demo Gratuita",
@@ -34,17 +27,12 @@ export default function ContattiPage() {
               <strong className="font-semibold text-ink">Email:</strong>{" "}
               <a href={`mailto:${INFO_EMAIL}`} className="text-rame hover:text-rame-hover">{INFO_EMAIL}</a>
             </p>
-            <p>
-              <strong className="font-semibold text-ink">Telefono:</strong>{" "}
-              <a href={BUSINESS_PHONE_HREF} className="text-rame hover:text-rame-hover">{BUSINESS_PHONE_DISPLAY}</a>
-            </p>
-            <p>
-              <strong className="font-semibold text-ink">Sede:</strong> {BUSINESS_ADDRESS}
+            <p className="text-[14px]">
+              <strong className="font-semibold text-ink">Operatività:</strong> in tutta Italia (assistenza e attivazione da remoto).
             </p>
             <p className="text-[14px]">
-              Titolare: {OWNER_NAME} · P.IVA {VAT_NUMBER}
+              P.IVA {VAT_NUMBER} · Risposta entro 1 giorno lavorativo, in italiano.
             </p>
-            <p className="text-[14px]">Tempi di risposta: entro 1 giorno lavorativo, in italiano.</p>
           </div>
         </div>
 

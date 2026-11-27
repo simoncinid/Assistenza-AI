@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { BUSINESS_ADDRESS, INFO_EMAIL, OWNER_NAME, VAT_NUMBER } from "@/lib/site";
+import Link from "next/link";
+import { INFO_EMAIL, VAT_NUMBER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description: "Informativa sull'utilizzo dei cookie e strumenti di misurazione su www.assistenza-ai.it.",
   alternates: { canonical: "/cookie-policy" },
+  robots: { index: false, follow: true },
 };
 
 export default function CookiePolicyPage() {
@@ -16,7 +18,8 @@ export default function CookiePolicyPage() {
       </h1>
       <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ink-soft">
         <p>
-          Il sito <strong className="text-ink">www.assistenza-ai.it</strong> (titolare: {OWNER_NAME}, P.IVA {VAT_NUMBER}, {BUSINESS_ADDRESS}) utilizza cookie tecnici indispensabili al funzionamento delle pagine e strumenti di analisi statistica aggregata (Google Analytics 4 con anonimizzazione IP) per migliorare i contenuti e le prestazioni del servizio.
+          Il sito <strong className="text-ink">www.assistenza-ai.it</strong> (P.IVA {VAT_NUMBER}, dati del titolare del trattamento indicati nella{" "}
+          <Link href="/privacy-policy" className="font-medium text-rame hover:text-rame-hover">Privacy Policy</Link>) utilizza cookie tecnici indispensabili al funzionamento delle pagine e strumenti di analisi statistica aggregata (Google Analytics 4 con anonimizzazione IP) per migliorare i contenuti e le prestazioni del servizio.
         </p>
         <p>
           Non utilizziamo cookie di profilazione pubblicitaria di terze parti. Puoi gestire o disabilitare i cookie in qualsiasi momento dalle impostazioni del tuo browser.

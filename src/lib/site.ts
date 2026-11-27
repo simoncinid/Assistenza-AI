@@ -5,11 +5,9 @@ export const SITE_URL =
 export const SITE_NAME = "Assistenza AI";
 export const INFO_EMAIL = "info@assistenza-ai.it";
 export const QUOTES_EMAIL = "info@assistenza-ai.it";
-export const OWNER_NAME = "Diego Simoncini";
+export const LEGAL_OWNER_NAME = "Diego Simoncini";
 export const VAT_NUMBER = "02524780505";
-export const BUSINESS_ADDRESS = "Via Capecchi 28, 56026 Pontedera (PI)";
-export const BUSINESS_PHONE_DISPLAY = "+39 339 179 7616";
-export const BUSINESS_PHONE_HREF = "tel:+393391797616";
+export const LEGAL_BUSINESS_ADDRESS = "Via Capecchi 28, 56026 Pontedera (PI)";
 
 export type SimulatorSectorKey =
   | "idraulici"
@@ -419,31 +417,16 @@ export function getOrganizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: SITE_NAME,
-    legalName: OWNER_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/brand/app-icon.svg`,
     email: INFO_EMAIL,
-    telephone: "+393391797616",
     taxID: VAT_NUMBER,
     vatID: `IT${VAT_NUMBER}`,
-    founder: {
-      "@type": "Person",
-      name: OWNER_NAME,
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Via Capecchi 28",
-      addressLocality: "Pontedera",
-      addressRegion: "PI",
-      postalCode: "56026",
-      addressCountry: "IT",
-    },
     areaServed: { "@type": "Country", name: "Italy" },
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
       email: INFO_EMAIL,
-      telephone: "+393391797616",
       availableLanguage: ["Italian"],
     },
   };
@@ -466,17 +449,8 @@ export function getProfessionalServiceJsonLd() {
     name: SITE_NAME,
     url: SITE_URL,
     email: INFO_EMAIL,
-    telephone: "+393391797616",
     taxID: VAT_NUMBER,
     vatID: `IT${VAT_NUMBER}`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Via Capecchi 28",
-      addressLocality: "Pontedera",
-      addressRegion: "PI",
-      postalCode: "56026",
-      addressCountry: "IT",
-    },
     areaServed: { "@type": "Country", name: "Italy" },
     availableLanguage: "it",
     description:

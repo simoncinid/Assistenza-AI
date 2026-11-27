@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import {
-  BUSINESS_ADDRESS,
-  BUSINESS_PHONE_DISPLAY,
   INFO_EMAIL,
-  OWNER_NAME,
+  LEGAL_BUSINESS_ADDRESS,
+  LEGAL_OWNER_NAME,
   VAT_NUMBER,
 } from "@/lib/site";
 
@@ -11,6 +10,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Informativa sul trattamento dei dati personali ai sensi del Regolamento UE 2016/679 (GDPR) per www.assistenza-ai.it.",
   alternates: { canonical: "/privacy-policy" },
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPolicyPage() {
@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <h2 className="pt-2 text-[19px] font-semibold text-ink">1. Titolare del trattamento</h2>
         <p>
-          <strong className="text-ink">{OWNER_NAME}</strong> — P.IVA {VAT_NUMBER} — Sede: {BUSINESS_ADDRESS} — Tel. {BUSINESS_PHONE_DISPLAY} — Email:{" "}
+          {LEGAL_OWNER_NAME} — P.IVA {VAT_NUMBER} — {LEGAL_BUSINESS_ADDRESS} — Email:{" "}
           <a href={`mailto:${INFO_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">{INFO_EMAIL}</a>.
         </p>
         <h2 className="pt-2 text-[19px] font-semibold text-ink">2. Dati raccolti e finalità</h2>
