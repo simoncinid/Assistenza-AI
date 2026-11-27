@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { CallSimulator } from "@/components/CallSimulator";
+import { SectorWhatsAppCard } from "@/components/HeroVisuals";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
 import { getBreadcrumbJsonLd, getFaqJsonLd, getServiceJsonLd, getVerticalBySlug, VERTICALS } from "@/lib/site";
@@ -76,7 +77,7 @@ export default async function VerticalPage({
           <CallSimulator defaultSector={vertical.simulatorKey} />
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
+        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
           <section className="rounded-xl bg-raised p-7 shadow-[var(--shadow-sm)]">
             <h2 className="text-[20px] font-semibold text-ink">Situazioni tipiche gestite</h2>
             <ul className="mt-4 space-y-4 text-[15px] leading-relaxed text-ink-soft">
@@ -99,7 +100,7 @@ export default async function VerticalPage({
           </section>
         </div>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-12">
+        <div id="richiedi-demo" className="mt-14 grid scroll-mt-24 grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start">
           <div className="order-1 lg:order-2 lg:col-span-6"><div className="lg:sticky lg:top-24">
             <LeadForm
               defaultSector={vertical.defaultSector}
@@ -119,7 +120,7 @@ export default async function VerticalPage({
             <div className="mt-6 divide-y divide-line border-t border-line">
               {vertical.faqs.map((faq) => (
                 <details key={faq.question} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-1 text-[16px] font-semibold text-ink">
                     <span>{faq.question}</span>
                     <span className="font-mono text-[16px] text-rame transition-transform group-open:rotate-45">+</span>
                   </summary>

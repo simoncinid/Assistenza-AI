@@ -35,7 +35,7 @@ function renderInlineLinks(text: string) {
       <Link
         key={idx}
         href={href}
-        className="font-medium text-rame underline decoration-rame/40 underline-offset-2 hover:text-rame-hover"
+        className="inline-block py-1 -my-1 font-medium text-rame underline decoration-rame/40 underline-offset-2 hover:text-rame-hover"
       >
         {label}
       </Link>
@@ -94,9 +94,9 @@ export default async function GuideDetailPage({
 
       <article className="mx-auto max-w-[72rem] px-4 py-12 sm:px-6 lg:py-16">
         <nav aria-label="Breadcrumb" className="text-[13px] text-ink-soft">
-          <Link href="/" className="hover:text-ink">Home</Link>
+          <Link href="/" className="inline-block py-2 -my-2 hover:text-ink">Home</Link>
           <span className="mx-2">/</span>
-          <Link href="/guide" className="hover:text-ink">Guide</Link>
+          <Link href="/guide" className="inline-block py-2 -my-2 hover:text-ink">Guide</Link>
           <span className="mx-2">/</span>
           <span className="text-ink">{guide.metaTitle}</span>
         </nav>

@@ -355,7 +355,7 @@ export const VERTICALS: Vertical[] = [
     metaDescription: "Segreteria AI conforme GDPR e AI Act per commercialisti, avvocati, consulenti del lavoro e amministratori di condominio: filtro pratiche e agenda.",
     h1: "Segreteria AI per studi professionali: filtra le chiamate mentre sei in riunione o in udienza.",
     inBreve:
-      "La segreteria AI per studi professionali (commercialisti, avvocati, consulenti del lavoro, amministratori di condominio) risponde sul numero dello studio quando sei in riunione o fuori orario. Distingue nuovi clienti da pratiche aperte, raccoglie motivo e fascia oraria e invia il riepilogo nel rispetto di GDPR e AI Act. Per ambulatori e cliniche vedi anche la pagina dedicata agli studi medici e dentistici.",
+      "Quando sei in riunione o udienza risponde con tono formale, qualifica clienti e nuove richieste e ti invia un riepilogo pulito.",
     situations: [
       {
         title: "Nuovi pazienti o clienti",
@@ -423,7 +423,7 @@ export const VERTICALS: Vertical[] = [
       "Automazioni AI concrete per PMI da 5 a 100 dipendenti: lettura fatture passive e DDT, preventivi automatici, integrazione ERP/CRM e assistenza continua.",
     h1: "Sviluppo e automazione AI per PMI italiane: meno data entry manuale, più controllo sui processi.",
     inBreve:
-      "Affianchiamo PMI italiane da 5 a 100 dipendenti per eliminare il lavoro manuale ripetitivo tra email, WhatsApp, DDT, fatture passive, preventivi e gestionale. Partiamo sempre da un processo ad alto ROI, lo integriamo nei programmi che usi già e lo seguiamo con assistenza tecnica continua in italiano.",
+      "Copre picchi e fuori orario 24/7, smista ordini e richieste commerciali e registra ogni lead qualificato nel tuo CRM.",
     situations: [
       {
         title: "Lettura automatica fatture passive e DDT",
@@ -489,7 +489,7 @@ export const VERTICALS: Vertical[] = [
     "metaTitle": "Centralino AI per Centri Caldaie, Clima e Termotecnici",
     "metaDescription": "Gestisci i picchi di ottobre e luglio senza linee intasate: il Centralino AI per caldaisti e climatizzazione filtra guasti, bollino blu e zone coperte.",
     "h1": "Centralino AI per centri assistenza caldaie e climatizzazione: zero linee intasate nei picchi stagionali.",
-    "inBreve": "Il Centralino AI per centri assistenza caldaie e climatizzazione risponde simultaneamente a tutte le chiamate durante i picchi di ottobre-novembre (accensione riscaldamento) e giugno-luglio (guasti condizionatori). Raccoglie marca dell'impianto, codice errore sul display, comune e tipo di richiesta (guasto urgente vs manutenzione annuale/bollino blu), inviando la scheda ordinata su WhatsApp o gestionale senza farti cambiare numero.",
+    "inBreve": "Nei picchi estivi e invernali il centralino AI risponde al 2° squillo, verifica marca e codice errore e smista i tecnici per zona.",
     "situations": [
       {
         "title": "Picco accensione caldaie (ottobre–novembre)",
@@ -542,7 +542,7 @@ export const VERTICALS: Vertical[] = [
     "metaTitle": "Segreteria AI per Studi Dentistici, Medici e Fisioterapia",
     "metaDescription": "Segreteria AI conforme GDPR e AI Act per studi dentistici e medici: gestisce prenotazioni, spostamenti visite e promemoria WhatsApp anti no-show 24/7.",
     "h1": "Segreteria AI per studi medici, dentistici e fisioterapia: meno chiamate perse in reception, meno visite saltate.",
-    "inBreve": "La Segreteria AI per studi medici, dentistici e fisioterapia risponde alle chiamate quando la segreteria è impegnata con i pazienti al desk, in pausa pranzo o fuori orario. Gestisce richieste di prima visita, igiene, spostamenti appuntamento e informazioni su orari e parcheggio, nel pieno rispetto del GDPR (senza raccogliere diagnosi cliniche non necessarie) e dell'Art. 50 dell'AI Act.",
+    "inBreve": "Risponde ai pazienti quando la segreteria è occupata, gestisce prenotazioni e spostamenti e invia promemoria automatici.",
     "situations": [
       {
         "title": "Reception occupata con pazienti in sala d'attesa",
@@ -595,23 +595,23 @@ export const VERTICALS: Vertical[] = [
     "metaTitle": "Centralino AI per Imprese Edili, Ristrutturazioni e Infissi",
     "metaDescription": "Non perdere richieste di ristrutturazione o infissi mentre sei in cantiere: l'AI filtra provincia, tipo di lavoro e metratura prima del sopralluogo.",
     "h1": "Centralino AI per imprese edili, ristrutturazioni e serramentisti: filtra i curiosi e blocca i sopralluoghi veri.",
-    "inBreve": "Il Centralino AI per imprese edili, ristrutturazioni e serramentisti risponde sul tuo numero mentre sei in cantiere o dal fornitore. Prima di farti perdere mezz'ora in auto per un sopralluogo fuori zona o fuori target, raccoglie comune dell'immobile, tipo di intervento (ristrutturazione completa, bagno, tetto, infissi), metratura indicativa e tempistiche, inviandoti una scheda chiara su WhatsApp.",
+    "inBreve": "Mentre sei in cantiere raccoglie comune, metratura e tempistiche, filtra i fuori zona e richiede le foto su WhatsApp prima del sopralluogo.",
     "situations": [
       {
         "title": "Qualifica preventiva prima del sopralluogo",
-        "detail": "raccoglie tipo di lavoro (bagno, appartamento intero, cappotto, sostituzione finestre), mq indicativi e comune, così richiami prima i lavori in target."
+        "detail": "Raccoglie tipo di lavoro (bagno, appartamento intero, cappotto, sostituzione finestre), mq indicativi e comune, così richiami prima i lavori in target."
       },
       {
         "title": "Filtro immediato su zone e lavori minimi",
-        "detail": "se non fai piccoli ritocchi o non operi fuori provincia, l'assistente lo chiarisce subito con gentilezza risparmiandoti richiamate a vuoto."
+        "detail": "Se non fai piccoli ritocchi o non operi fuori provincia, l'assistente lo chiarisce subito con gentilezza risparmiandoti richiamate a vuoto."
       },
       {
         "title": "Raccolta foto e planimetrie su WhatsApp",
-        "detail": "dopo la telefonata, il flusso WhatsApp AI invita il cliente a inviare 2–3 foto o la piantina per arrivare preparato al preventivo."
+        "detail": "Dopo la telefonata, il flusso WhatsApp AI invita il cliente a inviare 2–3 foto o la piantina per arrivare preparato al preventivo."
       },
       {
         "title": "Supporto bozze preventivi",
-        "detail": "per voci ricorrenti (es. sostituzione finestre, rifacimento bagno standard) prepara una bozza strutturata dal tuo listino da revisionare in pochi minuti."
+        "detail": "Per voci ricorrenti (es. sostituzione finestre, rifacimento bagno standard) prepara una bozza strutturata dal tuo listino da revisionare in pochi minuti."
       }
     ],
     "whenNotNeeded": [

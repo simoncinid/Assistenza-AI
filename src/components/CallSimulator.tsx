@@ -264,6 +264,14 @@ export function CallSimulator({
   const [instantMode, setInstantMode] = useState<boolean>(false);
   const [audioEnabled, setAudioEnabled] = useState<boolean>(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  useEffect(() => {
+    const el = tabRefs.current[selectedKey];
+    if (el && typeof el.scrollIntoView === "function") {
+      el.scrollIntoView({ inline: "center", block: "nearest", behavior: "auto" });
+    }
+  }, [selectedKey]);
 
   const scenario = SCENARIOS.find((s) => s.key === selectedKey) || SCENARIOS[0];
   const isComplete = visibleCount >= scenario.turns.length;

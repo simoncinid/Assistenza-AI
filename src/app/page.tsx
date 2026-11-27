@@ -40,8 +40,8 @@ export default function HomePage() {
 
       {/* HERO 12-col: testo 6 col + simulatore 6 col above the fold */}
       <section className="border-b border-line py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[72rem] gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-6">
+        <div className="mx-auto grid max-w-[72rem] grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-start">
+          <div className="min-w-0 lg:col-span-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
               AI PER PMI E ARTIGIANI IN ITALIA
             </p>
@@ -73,7 +73,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="lg:col-span-6">
+          <div className="min-w-0 lg:col-span-6">
             <CallSimulator defaultSector="idraulici" compact />
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+          <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12">
             <article className="flex flex-col justify-between rounded-xl bg-raised p-7 shadow-[var(--shadow-sm)] sm:p-8 lg:col-span-7">
               <div>
                 <div className="flex items-center justify-between gap-3">
@@ -219,7 +219,7 @@ export default function HomePage() {
 
       {/* COME FUNZIONA + QUANDO NON TI SERVE (filetto editoriale, no amber-50) */}
       <section className="border-y border-line bg-raised py-16 lg:py-20">
-        <div className="mx-auto grid max-w-[72rem] gap-12 px-4 sm:px-6 lg:grid-cols-12">
+        <div className="mx-auto grid max-w-[72rem] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
               Come si attiva
@@ -309,12 +309,12 @@ export default function HomePage() {
 
       {/* FORM PRIMA DELLE FAQ SU MOBILE (order-1 vs order-2) */}
       <section className="py-16 lg:py-24">
-        <div className="mx-auto grid max-w-[72rem] gap-12 px-4 sm:px-6 lg:grid-cols-12">
-          <div className="order-1 lg:order-2 lg:col-span-6">
+        <div className="mx-auto grid max-w-[72rem] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:items-start">
+          <div className="order-1 min-w-0 lg:order-2 lg:col-span-6">
             <LeadForm />
           </div>
 
-          <div className="order-2 lg:order-1 lg:col-span-6">
+          <div className="order-2 min-w-0 lg:order-1 lg:col-span-6 lg:sticky lg:top-24">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
               Domande frequenti
             </p>
@@ -324,7 +324,7 @@ export default function HomePage() {
             <div className="mt-6 divide-y divide-line border-t border-line">
               {HOME_FAQS.map((faq) => (
                 <details key={faq.question} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+                  <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-1 text-[16px] font-semibold text-ink">
                     <span>{faq.question}</span>
                     <span className="font-mono text-[16px] text-rame transition-transform group-open:rotate-45">+</span>
                   </summary>

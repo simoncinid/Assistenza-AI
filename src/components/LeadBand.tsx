@@ -23,9 +23,9 @@ export function LeadBand({
   lede = "Vediamo insieme quante chiamate o richieste perdi oggi, simuliamo l’assistente AI sul tuo settore e ti diciamo con onestà se si ripaga dal primo mese.",
 }: LeadBandProps) {
   return (
-    <section className="mt-16 rounded-2xl bg-dark px-5 py-10 text-[#F7F6F3] sm:px-8 sm:py-12 lg:px-10 lg:py-14">
-      <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
-        <div className="lg:col-span-5">
+    <section className="mt-16 mb-16 rounded-2xl bg-dark px-5 py-10 text-[#F7F6F3] sm:mb-24 sm:px-8 sm:py-12 lg:px-10 lg:py-14">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-start">
+        <div className="min-w-0 lg:col-span-5">
           <p className="font-mono text-[12px] font-medium uppercase tracking-[0.14em] text-[#E09B72]">
             {eyebrow}
           </p>
@@ -63,7 +63,7 @@ export function LeadBand({
           </p>
         </div>
 
-        <div className="lg:col-span-7 text-ink">
+        <div className="min-w-0 lg:col-span-7 text-ink">
           <LeadForm
             defaultSector={defaultSector}
             defaultNeed={defaultNeed}

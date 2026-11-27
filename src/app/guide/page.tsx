@@ -1,3 +1,4 @@
+import { GuidesToolsCard } from "@/components/HeroVisuals";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
@@ -40,15 +41,22 @@ export default function GuideIndexPage() {
         ])}
       />
       <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="min-w-0 lg:col-span-7">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
           Guide operative
         </p>
-        <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+        <h1 className="mt-2 max-w-[24ch] text-balance font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
           Guide pratiche su Centralino AI e automazioni per PMI
         </h1>
         <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
           Numeri reali, confronti chiari e istruzioni operative per artigiani, studi e PMI italiane: senza gergo tecnico e con tabelle pronte all&apos;uso.
         </p>
+          </div>
+          <div className="min-w-0 lg:col-span-5">
+            <GuidesToolsCard />
+          </div>
+        </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {GUIDES.map((guide, idx) => (

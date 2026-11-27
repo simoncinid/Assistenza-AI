@@ -40,7 +40,7 @@ export default function FaqPage() {
                 <div className="mt-3 divide-y divide-line border-y border-line">
                   {group.items.map((faq, idx) => (
                     <details key={`${faq.question}-${idx}`} className="group py-4">
-                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+                      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-1 text-[16px] font-semibold text-ink">
                         <span>{faq.question}</span>
                         <span className="font-mono text-[16px] text-rame transition-transform group-open:rotate-45">+</span>
                       </summary>

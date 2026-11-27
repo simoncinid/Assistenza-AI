@@ -1,3 +1,4 @@
+import { PmiPipelineCard } from "@/components/HeroVisuals";
 import type { Metadata } from "next";
 import { LeadBand } from "@/components/LeadBand";
 import { JsonLd } from "@/components/JsonLd";
@@ -22,15 +23,22 @@ export default function SviluppoAiPmiPage() {
         })}
       />
       <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="min-w-0 lg:col-span-7">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
           Sviluppo AI per PMI
         </p>
-        <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+        <h1 className="mt-2 max-w-[24ch] text-balance font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
           Automazioni AI costruite sui tuoi flussi reali
         </h1>
         <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
           Colleghiamo l&apos;intelligenza artificiale agli strumenti che usi già — email, Google Workspace, Notion, CRM e gestionali — per togliere ore di inserimento manuale ogni settimana.
         </p>
+          </div>
+          <div className="min-w-0 lg:col-span-5">
+            <PmiPipelineCard />
+          </div>
+        </div>
 
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           <div className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)]">
