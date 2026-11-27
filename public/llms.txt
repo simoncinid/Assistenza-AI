@@ -1,0 +1,15 @@
+# Assistenza AI (www.assistenza-ai.it)
+
+> Sviluppo e assistenza AI su misura per PMI, artigiani e studi professionali in Italia: centralino AI 24/7, assistente WhatsApp, automazione preventivi e appuntamenti.
+
+## Servizi principali
+- [Servizi AI per PMI e artigiani](https://www.assistenza-ai.it/servizi): Centralino telefonico AI, assistente WhatsApp, automazione preventivi, agenda e CRM.
+- [FAQ e risposte rapide](https://www.assistenza-ai.it/faq): Costi, tempi di attivazione, conformità GDPR e integrazioni.
+- [Richiedi una demo o consulenza](https://www.assistenza-ai.it/contatti): Modulo diretto per PMI e professionisti italiani.
+
+## Soluzioni per settore
+- [Centralino AI per Idraulici](https://www.assistenza-ai.it/settori/idraulici): Risposta automatica alle chiamate di emergenza e gestione appuntamenti mentre sei in cantiere.
+- [Assistente AI per Elettricisti](https://www.assistenza-ai.it/settori/elettricisti): Smistamento richieste guasti, sopralluoghi e preventivi senza perdere chiamate.
+- [AI per Officine Meccaniche](https://www.assistenza-ai.it/settori/officine): Prenotazione tagliandi, revisioni e aggiornamenti stato veicolo via telefono e WhatsApp.
+- [AI per Studi Professionali](https://www.assistenza-ai.it/settori/studi-professionali): Segreteria AI, filtro richieste clienti e raccolta documenti automatica.
+- [Automazione AI per PMI Italiane](https://www.assistenza-ai.it/settori/pmi): Workflow su misura integrati con gestionali, email e WhatsApp Business.
