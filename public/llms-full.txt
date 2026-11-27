@@ -1,0 +1,21 @@
+# Assistenza AI — Documentazione Completa (www.assistenza-ai.it)
+
+Assistenza AI progetta, configura e gestisce sistemi di intelligenza artificiale chiavi in mano per PMI, artigiani e studi professionali in Italia.
+
+## Come funziona il Centralino AI sul tuo numero esistente
+- Nessun cambio di numero telefonico (TIM, Vodafone, WindTre, Iliad, VoIP): si collega con deviazione condizionata (*61*) dopo 4-5 squilli, su occupato o fuori orario.
+- Risponde entro 1 secondo in italiano naturale, senza menu a tasti ("premi 1 per...").
+- Trasparenza conforme all'Articolo 50 dell'AI Act europeo (in vigore dal 2 agosto 2026): l'assistente dichiara chiaramente di essere un sistema AI all'inizio della chiamata.
+- Raccoglie nome, zona/indirizzo, codice errore o targa, distingue urgenze da preventivi e invia un riepilogo strutturato su WhatsApp o email in 10 secondi.
+
+## Settori serviti in Italia
+- Idraulici e termoidraulici (/settori/idraulici): caldaia in blocco, perdite urgenti, filtro zone servite e costo uscita.
+- Elettricisti e impiantisti (/settori/elettricisti): guasti al quadro/salvavita, sopralluoghi impianti, fotovoltaico e domotica.
+- Autofficine e carrozzerie (/settori/officine): prenotazione tagliandi, revisioni, cambio gomme con targa e modello.
+- Studi professionali (/settori/studi-professionali): dentisti, medici, commercialisti, avvocati, amministratori di condominio.
+- PMI italiane (/settori/pmi): automazione fatture passive, DDT, preventivi, integrazione ERP/CRM e governance anti Shadow AI.
+
+## Contatti ufficiali
+- Contatti generali: info@assistenza-ai.it
+- Richieste commerciali e preventivi: preventivi@assistenza-ai.it
+- Sito: https://www.assistenza-ai.it/contatti

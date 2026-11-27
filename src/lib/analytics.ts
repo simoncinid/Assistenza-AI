@@ -1,18 +1,17 @@
 "use client";
 
-export function trackCtaClick(label: string, destination?: string) {
+export function trackEvent(event: string, data?: Record<string, string | number>) {
   if (typeof window === "undefined") return;
   try {
-    const payload = {
-      event: "cta_click",
-      label,
-      destination: destination || "",
+    const detail = {
+      event,
+      ...data,
       page_url: window.location.href,
       timestamp: new Date().toISOString(),
     };
-    window.dispatchEvent(new CustomEvent("assistenza_ai_event", { detail: payload }));
+    window.dispatchEvent(new CustomEvent("assistenza_ai_event", { detail }));
   } catch {
-    // Non-blocking telemetry
+    // Non-blocking
   }
 }
 
