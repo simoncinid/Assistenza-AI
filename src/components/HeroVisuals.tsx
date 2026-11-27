@@ -198,14 +198,14 @@ export function CallAnatomyCard() {
 export function WhatsAppMockupCard() {
   return (
     <div className="min-w-0 rounded-2xl border border-line bg-raised p-5 shadow-[var(--shadow-md)]">
-      <div className="flex items-center justify-between border-b border-line pb-3">
-        <div>
+      <div className="flex items-center justify-between gap-2 border-b border-line pb-3">
+        <div className="min-w-0">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-rame">
-            Esempio chat WhatsApp Business AI
+            WhatsApp Business AI
           </p>
           <p className="mt-0.5 text-[12px] text-ink-soft">Risposta automatica · 24/7</p>
         </div>
-        <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 font-mono text-[11px] font-medium text-emerald-800">
+        <span className="shrink-0 whitespace-nowrap rounded-full bg-emerald-50 px-2.5 py-0.5 font-mono text-[11px] font-medium text-emerald-800">
           API Ufficiali
         </span>
       </div>

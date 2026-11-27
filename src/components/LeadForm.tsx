@@ -8,6 +8,9 @@ const SECTORS = [
   "Idraulico",
   "Elettricista",
   "Officina",
+  "Caldaie e Climatizzazione",
+  "Studio Medico / Dentistico",
+  "Impresa Edile / Ristrutturazioni",
   "Studio Professionale",
   "PMI",
   "Artigiano",
@@ -209,7 +212,7 @@ export function LeadForm({
                 onChange={(e) => setSector(e.target.value)}
                 className={inputClass}
               >
-                <option value="" disabled>Seleziona il tuo settore…</option>
+                <option value="" disabled>Settore…</option>
                 {SECTORS.map((s) => (
                   <option key={s} value={s}>
                     {s}
@@ -259,11 +262,11 @@ export function LeadForm({
               required
               checked={gdprConsent}
               onChange={(e) => setGdprConsent(e.target.checked)}
-              className="mt-0.5 h-4 w-4 accent-rame"
+              className="mt-[3px] h-4 w-4 shrink-0 accent-rame"
             />
             <span>
               Acconsento al trattamento dei dati per essere ricontattato (
-              <a href="/privacy-policy" className="inline-flex min-h-11 items-center text-rame underline underline-offset-2 hover:text-rame-hover">
+              <a href="/privacy-policy" className="relative text-rame underline underline-offset-2 hover:text-rame-hover after:absolute after:-inset-x-1 after:-inset-y-2.5">
                 Privacy Policy
               </a>
               ). Zero spam, nessuna cessione a terzi.

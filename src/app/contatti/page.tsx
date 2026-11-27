@@ -16,7 +16,7 @@ export default function ContattiPage() {
       <JsonLd data={{ "@context": "https://schema.org", "@type": "ContactPage", name: `Contatti e Demo — ${SITE_NAME}`, url: `${SITE_URL}/contatti`, inLanguage: "it-IT" }} />
       <JsonLd data={getBreadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contatti", path: "/contatti" }])} />
       <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
-      <div className="grid gap-12 lg:grid-cols-12">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">Contatti</p>
           <h1 className="mt-2 font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
@@ -26,7 +26,18 @@ export default function ContattiPage() {
             In 15 minuti vediamo insieme come risponde il Centralino AI sui casi reali della tua attività e se conviene davvero attivarlo.
           </p>
 
-          <div className="mt-8 space-y-3 border-t border-line pt-6 text-[15px] text-ink-soft">
+          <div className="mt-8 rounded-xl border border-line bg-raised p-5">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-rame">
+              Cosa succede dopo l&apos;invio
+            </p>
+            <ol className="mt-3 space-y-2.5 text-[14px] leading-snug text-ink-soft">
+              <li className="flex gap-2.5"><span className="font-mono text-rame">01</span><span>Ti rispondiamo entro 1 giorno lavorativo per fissare 15 minuti.</span></li>
+              <li className="flex gap-2.5"><span className="font-mono text-rame">02</span><span>Simuliamo dal vivo una chiamata reale sul tuo settore.</span></li>
+              <li className="flex gap-2.5"><span className="font-mono text-rame">03</span><span>Decidi in piena libertà se avviare la configurazione (5–7 gg).</span></li>
+            </ol>
+          </div>
+
+          <div className="mt-6 space-y-3 border-t border-line pt-6 text-[15px] text-ink-soft">
             <p>
               <strong className="font-semibold text-ink">Email:</strong>{" "}
               <a href={`mailto:${INFO_EMAIL}`} className="text-rame hover:text-rame-hover">{INFO_EMAIL}</a>

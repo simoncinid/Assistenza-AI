@@ -152,7 +152,7 @@ export const VERTICALS: Vertical[] = [
       "Segretaria AI 24/7 per idraulici e caldaisti: risponde mentre sei in cantiere, distingue caldaia in blocco da preventivi e invia indirizzo e urgenza su WhatsApp.",
     h1: "Centralino AI per idraulici e termoidraulici: nessun cliente perso mentre sei in cantiere.",
     inBreve:
-      "Il Centralino AI per idraulici risponde sul tuo numero di cellulare o fisso quando hai le mani occupate su un impianto. Chiede al cliente il tipo di guasto (perdita, caldaia in blocco, codice errore), verifica la zona e ti manda subito un riepilogo su WhatsApp così sai chi richiamare per primo.",
+      "Risponde al 2° squillo mentre sei in cantiere, capisce se è un guasto urgente e ti manda zona, modello caldaia e recapito su WhatsApp.",
     situations: [
       {
         title: "Caldaia in blocco o perdita urgente",
@@ -220,7 +220,7 @@ export const VERTICALS: Vertical[] = [
       "Segretaria virtuale AI per elettricisti: risponde al telefono quando sei in cantiere, filtra zone e urgenze su salvavita o impianti e fissa i sopralluoghi.",
     h1: "Centralino AI per elettricisti e impiantisti: rispondi sempre, anche in cantiere.",
     inBreve:
-      "La segretaria AI per elettricisti si attiva automaticamente quando non puoi rispondere sul tuo numero. Distingue un guasto urgente (quadro elettrico, salvavita che scatta, corto circuito) da una richiesta di sopralluogo per fotovoltaico, domotica o rifacimento impianto, inviandoti la scheda completa su WhatsApp.",
+      "Mentre lavori su un quadro elettrico, risponde al tuo numero, distingue urgenze da preventivi e ti invia la scheda pulita su WhatsApp.",
     situations: [
       {
         title: "Guasto urgente al quadro o salvavita",
@@ -288,7 +288,7 @@ export const VERTICALS: Vertical[] = [
       "Segretaria AI per autofficine e carrozzerie: prenota tagliandi e revisioni raccogliendo targa, modello e problema senza interrompere il lavoro in officina.",
     h1: "Centralino AI per autofficine e carrozzerie: prenotazioni e tagliandi senza fermare il ponte.",
     inBreve:
-      "Il Centralino AI per autofficine risponde alle chiamate ripetitive mentre i meccanici lavorano sui veicoli. Raccoglie targa, modello, tipo di intervento (tagliando, revisione, cambio gomme, spia accesa) e giorno preferito, inviandoti la scheda pronta da confermare in agenda.",
+      "Risponde mentre sei sotto ponte, raccoglie targa, modello e tipo di intervento e propone slot in agenda senza interrompere il lavoro.",
     situations: [
       {
         title: "Prenotazione tagliando con targa e modello",
@@ -531,7 +531,7 @@ export const VERTICALS: Vertical[] = [
         "answer": "Sì. Puoi attivarlo con deviazione su occupato (*67*) o mancata risposta (*61*), così interviene solo quando l'ufficio è saturo, in pausa pranzo o fuori orario."
       }
     ],
-    "defaultSector": "Artigiano",
+    "defaultSector": "Caldaie e Climatizzazione",
     "defaultNeed": "Centralino AI",
     "simulatorKey": "caldaie-climatizzazione"
   },
@@ -584,7 +584,7 @@ export const VERTICALS: Vertical[] = [
         "answer": "Abbinando la Segreteria AI ai promemoria automatici su WhatsApp 24 ore prima della visita con conferma/spostamento rapido, si recuperano gli slot scoperti prima che la poltrona resti vuota."
       }
     ],
-    "defaultSector": "Studio Professionale",
+    "defaultSector": "Studio Medico / Dentistico",
     "defaultNeed": "Centralino AI",
     "simulatorKey": "studi-medici-dentistici"
   },
@@ -637,7 +637,7 @@ export const VERTICALS: Vertical[] = [
         "answer": "Mai. L'AI raccoglie i dati tecnici di base e, se vuoi, ti prepara una bozza interna sul tuo listino, ma ogni cifra verso il cliente passa sempre dalla tua approvazione."
       }
     ],
-    "defaultSector": "Artigiano",
+    "defaultSector": "Impresa Edile / Ristrutturazioni",
     "defaultNeed": "Centralino AI",
     "simulatorKey": "imprese-edili-ristrutturazioni"
   },

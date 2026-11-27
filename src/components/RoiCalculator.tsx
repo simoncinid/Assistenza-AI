@@ -128,7 +128,7 @@ export function RoiCalculator() {
           <button
             type="button"
             onClick={handleSendToForm}
-            className="mt-auto pt-0 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
+            className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
           >
             Blocca le chiamate perse →
           </button>

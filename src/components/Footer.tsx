@@ -28,20 +28,20 @@ export function Footer() {
 
         <div className="min-w-0">
           <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#9E9B94]">Servizi</p>
-          <ul className="mt-3 space-y-2 text-[14px] text-[#E6E3DD]">
-            <li><Link href="/servizi/centralino-ai" className="inline-block py-1 hover:text-white">Centralino AI 24/7</Link></li>
-            <li><Link href="/servizi/automazione-whatsapp-ai" className="inline-block py-1 hover:text-white">Automazione WhatsApp AI</Link></li>
-            <li><Link href="/servizi/sviluppo-ai-pmi" className="inline-block py-1 hover:text-white">Sviluppo AI per PMI</Link></li>
-            <li><Link href="/servizi/assistenza-manutenzione-ai" className="inline-block py-1 hover:text-white">Assistenza e Manutenzione AI</Link></li>
+          <ul className="mt-3 space-y-0.5 text-[14px] text-[#E6E3DD]">
+            <li><Link href="/servizi/centralino-ai" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Centralino AI 24/7</Link></li>
+            <li><Link href="/servizi/automazione-whatsapp-ai" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Automazione WhatsApp AI</Link></li>
+            <li><Link href="/servizi/sviluppo-ai-pmi" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Sviluppo AI per PMI</Link></li>
+            <li><Link href="/servizi/assistenza-manutenzione-ai" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Assistenza e Manutenzione AI</Link></li>
           </ul>
         </div>
 
         <div className="min-w-0">
           <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#9E9B94]">Settori</p>
-          <ul className="mt-3 space-y-2 text-[14px] text-[#E6E3DD]">
+          <ul className="mt-3 space-y-0.5 text-[14px] text-[#E6E3DD]">
             {VERTICALS.map((v) => (
               <li key={v.slug}>
-                <Link href={`/settori/${v.slug}`} className="inline-block py-1 hover:text-white">
+                <Link href={`/settori/${v.slug}`} className="inline-flex min-h-10 items-center py-1.5 hover:text-white">
                   {v.shortTitle}
                 </Link>
               </li>
@@ -51,13 +51,13 @@ export function Footer() {
 
         <div className="col-span-2 min-w-0 md:col-span-1">
           <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#9E9B94]">Azienda e Legale</p>
-          <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 text-[14px] text-[#E6E3DD] md:grid-cols-1">
-            <li><Link href="/chi-siamo" className="inline-block py-1 hover:text-white">Chi siamo</Link></li>
-            <li><Link href="/guide" className="inline-block py-1 hover:text-white">Guide pratiche</Link></li>
-            <li><Link href="/faq" className="inline-block py-1 hover:text-white">Domande frequenti</Link></li>
-            <li><Link href="/contatti" className="inline-block py-1 hover:text-white">Contatti e Demo</Link></li>
-            <li><Link href="/privacy-policy" className="inline-block py-1 hover:text-white">Privacy Policy</Link></li>
-            <li><Link href="/cookie-policy" className="inline-block py-1 hover:text-white">Cookie Policy</Link></li>
+          <ul className="mt-3 grid grid-cols-2 gap-x-4 gap-y-0.5 text-[14px] text-[#E6E3DD] md:grid-cols-1">
+            <li><Link href="/chi-siamo" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Chi siamo</Link></li>
+            <li><Link href="/guide" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Guide pratiche</Link></li>
+            <li><Link href="/faq" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Domande frequenti</Link></li>
+            <li><Link href="/contatti" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Contatti e Demo</Link></li>
+            <li><Link href="/privacy-policy" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Privacy Policy</Link></li>
+            <li><Link href="/cookie-policy" className="inline-flex min-h-10 items-center py-1.5 hover:text-white">Cookie Policy</Link></li>
           </ul>
         </div>
       </div>

@@ -18,7 +18,7 @@ const SERVICES = [
     forWho: "Artigiani, officine, studi, imprese edili e PMI",
     whatItDoes:
       "Risponde in italiano al 2° squillo quando non puoi, qualifica urgenze e zona, fissa appuntamenti e invia il riepilogo su WhatsApp.",
-    setup: "5–7 gg · deviazione *61*",
+    setup: "5–7 gg · *61*",
   },
   {
     href: "/servizi/automazione-whatsapp-ai",
@@ -88,7 +88,7 @@ export default function ServiziPage() {
                   {s.tag}
                 </p>
                 <h2 className="mt-1 text-[20px] font-semibold tracking-[-0.015em] text-ink">
-                  <Link href={s.href} className="hover:text-rame">
+                  <Link href={s.href} className="inline-flex min-h-11 items-center hover:text-rame">
                     {s.title}
                   </Link>
                 </h2>
@@ -109,7 +109,7 @@ export default function ServiziPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-between gap-3 lg:col-span-2 lg:flex-col lg:items-end lg:text-right">
-                <span className="font-mono text-[12px] text-ink-soft">{s.setup}</span>
+                <span className="whitespace-nowrap font-mono text-[12px] text-ink-soft">{s.setup}</span>
                 <Link
                   href={s.href}
                   className="inline-flex min-h-11 items-center text-[14px] font-semibold text-rame hover:text-rame-hover"

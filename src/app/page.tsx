@@ -143,7 +143,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/servizi/automazione-whatsapp-ai"
-                  className="mt-4 inline-block text-[14px] font-semibold text-rame hover:text-rame-hover"
+                  className="mt-3 inline-flex min-h-11 items-center text-[14px] font-semibold text-rame hover:text-rame-hover"
                 >
                   Approfondisci WhatsApp AI →
                 </Link>
@@ -160,7 +160,7 @@ export default function HomePage() {
                   Integrazioni su CRM, gestionali, email e documenti con manutenzione continuativa e un tecnico italiano dedicato.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-4 text-[14px] font-semibold">
-                  <Link href="/servizi/sviluppo-ai-pmi" className="text-rame hover:text-rame-hover">
+                  <Link href="/servizi/sviluppo-ai-pmi" className="inline-flex min-h-11 items-center text-rame hover:text-rame-hover">
                     Sviluppo PMI →
                   </Link>
                   <Link href="/servizi/assistenza-manutenzione-ai" className="text-ink-soft hover:text-ink">
@@ -310,11 +310,11 @@ export default function HomePage() {
       {/* FORM PRIMA DELLE FAQ SU MOBILE (order-1 vs order-2) */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto grid max-w-[72rem] grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:items-start">
-          <div className="order-1 min-w-0 lg:order-2 lg:col-span-6">
+          <div className="order-1 min-w-0 lg:order-2 lg:col-span-6 lg:sticky lg:top-24">
             <LeadForm />
           </div>
 
-          <div className="order-2 min-w-0 lg:order-1 lg:col-span-6 lg:sticky lg:top-24">
+          <div className="order-2 min-w-0 lg:order-1 lg:col-span-6">
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
               Domande frequenti
             </p>
@@ -334,12 +334,20 @@ export default function HomePage() {
                 </details>
               ))}
             </div>
-            <Link
-              href="/faq"
-              className="mt-5 inline-block text-[14px] font-semibold text-rame hover:text-rame-hover"
-            >
-              Leggi tutte le FAQ →
-            </Link>
+            <div className="mt-8 rounded-xl border border-line bg-raised p-5">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-rame">
+                Altre domande su costi, *61* o GDPR?
+              </p>
+              <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">
+                Trovi tutte le 20 risposte tecniche nella pagina FAQ oppure puoi chiederci una simulazione gratuita di 15 minuti direttamente dal modulo accanto.
+              </p>
+              <Link
+                href="/faq"
+                className="mt-2 inline-flex min-h-11 items-center text-[14px] font-semibold text-rame hover:text-rame-hover"
+              >
+                Leggi tutte le 20 FAQ →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
