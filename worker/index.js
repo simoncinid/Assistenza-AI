@@ -137,6 +137,38 @@ async function handleLeadPost(request, env) {
   return Response.json({ ok: true });
 }
 
+const MIME_BY_EXT = {
+  html: "text/html; charset=utf-8",
+  htm: "text/html; charset=utf-8",
+  css: "text/css; charset=utf-8",
+  js: "application/javascript; charset=utf-8",
+  mjs: "application/javascript; charset=utf-8",
+  json: "application/json; charset=utf-8",
+  webmanifest: "application/manifest+json; charset=utf-8",
+  svg: "image/svg+xml; charset=utf-8",
+  png: "image/png",
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  webp: "image/webp",
+  gif: "image/gif",
+  ico: "image/x-icon",
+  woff2: "font/woff2",
+  woff: "font/woff",
+  xml: "application/xml; charset=utf-8",
+  txt: "text/plain; charset=utf-8",
+};
+
+function inferContentType(pathname) {
+  const clean = pathname.split("?")[0];
+  const lastSeg = clean.split("/").pop() || "";
+  const dot = lastSeg.lastIndexOf(".");
+  if (dot > 0) {
+    const ext = lastSeg.slice(dot + 1).toLowerCase();
+    if (MIME_BY_EXT[ext]) return MIME_BY_EXT[ext];
+  }
+  return "text/html; charset=utf-8";
+}
+
 const IMMUTABLE_PREFIXES = ["/_next/static/", "/brand/", "/icons/"];
 const IMMUTABLE_EXACT = new Set([
   "/favicon.svg",
@@ -178,6 +210,17 @@ export default {
 
     const res = await env.ASSETS.fetch(request);
     const headers = new Headers(res.headers);
+
+    // Ensure accurate Content-Type on every asset & HTML route (required with nosniff)
+    const existingCt = headers.get("content-type");
+    if (!existingCt || existingCt.trim().toLowerCase() === "application/octet-stream") {
+      headers.set("Content-Type", inferContentType(url.pathname));
+    } else if (
+      existingCt.toLowerCase().startsWith("text/html") &&
+      !existingCt.toLowerCase().includes("charset")
+    ) {
+      headers.set("Content-Type", "text/html; charset=utf-8");
+    }
 
     // Security headers
     headers.set("X-Content-Type-Options", "nosniff");
