@@ -72,7 +72,7 @@ export function LeadForm({
 
     setStatus("submitting");
     setErrorMsg("");
-    trackEvent("lead_submit", { sector, need });
+    trackEvent("lead_submit", { verticale: sector, esigenza: need });
 
     const attribution = getAttributionFields();
 

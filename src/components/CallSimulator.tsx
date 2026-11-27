@@ -199,11 +199,11 @@ export function CallSimulator({
 
   function startSimulation() {
     stopPlayback();
-    trackEvent("demo_start", { sector: scenario.key, mode: instantMode ? "instant" : "normal" });
+    trackEvent("demo_start", { verticale: scenario.tabLabel, esigenza: "Centralino AI", mode: instantMode ? "instant" : "normal" });
 
     if (instantMode) {
       setVisibleCount(scenario.turns.length);
-      trackEvent("demo_complete", { sector: scenario.key });
+      trackEvent("demo_complete", { verticale: scenario.tabLabel, esigenza: "Centralino AI", sector: scenario.key });
       return;
     }
 
@@ -223,7 +223,7 @@ export function CallSimulator({
         timerRef.current = setTimeout(advance, 1650);
       } else {
         setIsPlaying(false);
-        trackEvent("demo_complete", { sector: scenario.key });
+        trackEvent("demo_complete", { verticale: scenario.tabLabel, esigenza: "Centralino AI", sector: scenario.key });
       }
     };
 

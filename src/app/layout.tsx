@@ -21,6 +21,7 @@ const jetbrains = JetBrains_Mono({
 
 const gscVerification = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 const cfAnalyticsToken = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
+const ga4Id = process.env.NEXT_PUBLIC_GA4_ID || "G-VPF5GJ092Z";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,6 +53,20 @@ export default function RootLayout({
     <html lang="it" className={`${jakarta.variable} ${jetbrains.variable}`}>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <JsonLd data={getOrganizationJsonLd()} />
+        {ga4Id ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "${ga4Id}", { anonymize_ip: true });`}
+            </Script>
+          </>
+        ) : null}
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
