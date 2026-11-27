@@ -50,7 +50,7 @@ export default async function VerticalPage({
         <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
           Soluzione per {vertical.shortTitle}
         </p>
-        <h1 className="mt-2 max-w-[26ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
+        <h1 className="mt-2 max-w-[26ch] text-balance font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">
           {vertical.h1}
         </h1>
         <p className="mt-4 max-w-[65ch] text-[17px] leading-[1.55] text-ink-soft">
@@ -76,7 +76,7 @@ export default async function VerticalPage({
           <CallSimulator defaultSector={vertical.simulatorKey} />
         </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
           <section className="rounded-xl bg-raised p-7 shadow-[var(--shadow-sm)]">
             <h2 className="text-[20px] font-semibold text-ink">Situazioni tipiche gestite</h2>
             <ul className="mt-4 space-y-4 text-[15px] leading-relaxed text-ink-soft">
@@ -100,12 +100,13 @@ export default async function VerticalPage({
         </div>
 
         <div className="mt-14 grid gap-12 lg:grid-cols-12">
-          <div className="order-1 lg:order-2 lg:col-span-6">
+          <div className="order-1 lg:order-2 lg:col-span-6"><div className="lg:sticky lg:top-24">
             <LeadForm
               defaultSector={vertical.defaultSector}
               defaultNeed={vertical.defaultNeed}
               title={`Attivalo per la tua attività (${vertical.shortTitle})`}
             />
+            </div>
           </div>
 
           <div className="order-2 lg:order-1 lg:col-span-6">

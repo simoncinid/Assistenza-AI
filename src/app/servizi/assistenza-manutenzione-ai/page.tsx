@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { JsonLd } from "@/components/JsonLd";
 import { getServiceJsonLd } from "@/lib/site";
 
@@ -53,9 +53,7 @@ export default function AssistenzaManutenzionePage() {
           </div>
         </div>
 
-        <div className="mt-14 max-w-2xl">
-          <LeadForm defaultSector="PMI" defaultNeed="Assistenza AI" title="Hai già un'automazione AI da stabilizzare?" />
-        </div>
+        <LeadBand defaultSector="PMI" defaultNeed="Assistenza AI" title="Hai già un'automazione AI da stabilizzare?" />
       </div>
     </>
   );

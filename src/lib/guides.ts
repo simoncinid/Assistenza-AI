@@ -121,7 +121,7 @@ export const GUIDES: GuideItem[] = [
             "ordered": false,
             "items": [
               "Valore medio di un intervento caldaia o riparazione perdita: 140–250 € (sostituzione caldaia: 1.800–2.800 €).",
-              "Chiamate perse in cantiere o pausa pranzo: anche solo 2 al giorno = \\~40 chiamate perse al mese.",
+              "Chiamate perse in cantiere o pausa pranzo: anche solo 2 al giorno = circa 40 chiamate perse al mese.",
               "Se anche solo il 10% di chi non riceve risposta chiama il numero successivo su Google (in realtà per le emergenze idrauliche la percentuale supera il 60%), stai perdendo almeno 4–10 lavori al mese.",
               "Recuperando 1 solo intervento al mese il centralino è già in pari; dal secondo in poi è margine netto."
             ]

@@ -30,7 +30,7 @@ interface LeadFormProps {
 }
 
 export function LeadForm({
-  defaultSector = "Idraulico",
+  defaultSector = "",
   defaultNeed = "Centralino AI",
   title = "Richiedi una demo gratuita (15 min)",
   subtitle = "Raccontaci la tua attività: ti rispondiamo entro 1 giorno lavorativo con una proposta concreta.",
@@ -111,7 +111,7 @@ export function LeadForm({
   }
 
   const inputClass =
-    "mt-1.5 h-11 w-full rounded-md border border-line bg-raised px-3.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame";
+    "mt-1.5 h-11 w-full rounded-md border border-line bg-raised px-3.5 text-[16px] md:text-[16px] md:text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame";
 
   return (
     <div
@@ -209,6 +209,7 @@ export function LeadForm({
                 onChange={(e) => setSector(e.target.value)}
                 className={inputClass}
               >
+                <option value="" disabled>Seleziona il tuo settore…</option>
                 {SECTORS.map((s) => (
                   <option key={s} value={s}>
                     {s}
@@ -248,7 +249,7 @@ export function LeadForm({
               placeholder="Quante chiamate ricevi al giorno o cosa vorresti automatizzare?"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="mt-1.5 w-full rounded-md border border-line bg-raised px-3.5 py-2.5 text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame"
+              className="mt-1.5 w-full rounded-md border border-line bg-raised px-3.5 py-2.5 text-[16px] md:text-[15px] text-ink placeholder:text-ink-soft/60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rame"
             />
           </div>
 
@@ -262,7 +263,7 @@ export function LeadForm({
             />
             <span>
               Acconsento al trattamento dei dati per essere ricontattato (
-              <a href="/privacy-policy" className="text-rame underline underline-offset-2 hover:text-rame-hover">
+              <a href="/privacy-policy" className="inline-flex min-h-11 items-center text-rame underline underline-offset-2 hover:text-rame-hover">
                 Privacy Policy
               </a>
               ). Zero spam, nessuna cessione a terzi.
@@ -285,7 +286,7 @@ export function LeadForm({
 
           <p className="text-center text-[13px] text-ink-soft">
             Risposta diretta da un tecnico in italiano entro 1 giorno lavorativo. Oppure scrivi a{" "}
-            <a href={`mailto:${QUOTES_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">
+            <a href={`mailto:${QUOTES_EMAIL}`} className="whitespace-nowrap font-medium text-rame hover:text-rame-hover">
               {QUOTES_EMAIL}
             </a>.
           </p>

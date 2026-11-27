@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { JsonLd } from "@/components/JsonLd";
 import {
   getBreadcrumbJsonLd,
@@ -66,9 +66,7 @@ export default function ChiSiamoPage() {
           </p>
         </div>
 
-        <div className="mt-14 max-w-2xl">
-          <LeadForm title="Conosciamoci in 15 minuti" />
-        </div>
+        <LeadBand title="Conosciamoci in 15 minuti" />
       </div>
     </>
   );

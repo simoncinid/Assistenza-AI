@@ -9,11 +9,7 @@ export const LEGAL_OWNER_NAME = "Diego Simoncini";
 export const VAT_NUMBER = "02524780505";
 export const LEGAL_BUSINESS_ADDRESS = "Via Capecchi 28, 56026 Pontedera (PI)";
 
-export type SimulatorSectorKey =
-  | "idraulici"
-  | "elettricisti"
-  | "officine"
-  | "studi-professionali";
+export type SimulatorSectorKey = "idraulici" | "elettricisti" | "officine" | "caldaie-climatizzazione" | "studi-medici-dentistici" | "studi-professionali" | "imprese-edili-ristrutturazioni" | "pmi";
 
 export interface Vertical {
   slug: string;
@@ -484,7 +480,7 @@ export const VERTICALS: Vertical[] = [
     ],
     defaultSector: "PMI",
     defaultNeed: "Automazione PMI",
-    simulatorKey: "idraulici",
+    simulatorKey: "pmi",
   },
   {
     "slug": "caldaie-climatizzazione",
@@ -537,7 +533,7 @@ export const VERTICALS: Vertical[] = [
     ],
     "defaultSector": "Artigiano",
     "defaultNeed": "Centralino AI",
-    "simulatorKey": "idraulici"
+    "simulatorKey": "caldaie-climatizzazione"
   },
   {
     "slug": "studi-medici-dentistici",
@@ -590,7 +586,7 @@ export const VERTICALS: Vertical[] = [
     ],
     "defaultSector": "Studio Professionale",
     "defaultNeed": "Centralino AI",
-    "simulatorKey": "studi-professionali"
+    "simulatorKey": "studi-medici-dentistici"
   },
   {
     "slug": "imprese-edili-ristrutturazioni",
@@ -643,7 +639,7 @@ export const VERTICALS: Vertical[] = [
     ],
     "defaultSector": "Artigiano",
     "defaultNeed": "Centralino AI",
-    "simulatorKey": "idraulici"
+    "simulatorKey": "imprese-edili-ristrutturazioni"
   },
 ];
 

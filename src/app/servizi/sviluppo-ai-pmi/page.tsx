@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { JsonLd } from "@/components/JsonLd";
 import { getServiceJsonLd } from "@/lib/site";
 
@@ -53,9 +53,7 @@ export default function SviluppoAiPmiPage() {
           </div>
         </div>
 
-        <div className="mt-14 max-w-2xl">
-          <LeadForm defaultSector="PMI" defaultNeed="Automazione PMI" title="Parliamo del tuo progetto AI" />
-        </div>
+        <LeadBand defaultSector="PMI" defaultNeed="Automazione PMI" title="Parliamo del tuo progetto AI" />
       </div>
     </>
   );

@@ -45,7 +45,7 @@ export default function HomePage() {
             <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
               AI PER PMI E ARTIGIANI IN ITALIA
             </p>
-            <h1 className="mt-3 font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.25rem]">
+            <h1 className="mt-3 text-balance font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl lg:text-[3.25rem]">
               Non perdere più clienti al telefono mentre lavori.
             </h1>
             <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.55] text-ink-soft sm:text-[18px]">
@@ -93,7 +93,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/servizi"
-              className="text-[14px] font-semibold text-rame hover:text-rame-hover"
+              className="inline-flex min-h-11 items-center text-[14px] font-semibold text-rame hover:text-rame-hover"
             >
               Vedi tutti i servizi →
             </Link>
@@ -195,21 +195,21 @@ export default function HomePage() {
               <Link
                 key={v.slug}
                 href={`/settori/${v.slug}`}
-                className="group grid gap-2 py-5 transition-colors hover:bg-raised/70 sm:grid-cols-12 sm:items-center sm:px-3"
+                className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-1.5 py-4 transition-colors hover:bg-raised/70 sm:grid-cols-12 sm:gap-2 sm:py-5 sm:px-3"
               >
                 <span className="inline-flex items-center gap-2.5 font-mono text-[13px] font-medium text-ink-soft sm:col-span-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={`/icons/${VERTICAL_ICON[v.slug] ?? "pmi"}.svg`} alt="" width={20} height={20} className="h-5 w-5 shrink-0 opacity-80" />
                   <span>0{idx + 1}</span>
                 </span>
-                <span className="text-[19px] font-semibold text-ink group-hover:text-rame sm:col-span-4">
+                <span className="text-[18px] font-semibold text-ink group-hover:text-rame sm:col-span-4 sm:text-[19px]">
                   {v.shortTitle}
                 </span>
-                <span className="text-[15px] text-ink-soft sm:col-span-6">
-                  {v.metaDescription}
-                </span>
-                <span className="text-[14px] font-semibold text-rame sm:col-span-1 sm:text-right">
+                <span className="text-[14px] font-semibold text-rame sm:order-last sm:col-span-1 sm:text-right">
                   →
+                </span>
+                <span className="col-span-3 line-clamp-2 text-[14px] text-ink-soft sm:col-span-6 sm:text-[15px]">
+                  {v.metaDescription}
                 </span>
               </Link>
             ))}
@@ -286,7 +286,7 @@ export default function HomePage() {
                 Costi reali, confronti e istruzioni operative
               </h2>
             </div>
-            <Link href="/guide" className="text-[14px] font-semibold text-rame hover:text-rame-hover">
+            <Link href="/guide" className="inline-flex min-h-11 items-center text-[14px] font-semibold text-rame hover:text-rame-hover">
               Tutte le guide →
             </Link>
           </div>

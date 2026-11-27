@@ -16,6 +16,7 @@ export default function CookiePolicyPage() {
       <h1 className="mt-2 font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-4xl">
         Cookie Policy
       </h1>
+      <p className="mt-2 font-mono text-[12px] text-ink-soft">Ultimo aggiornamento: 27 nov 2026</p>
       <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ink-soft">
         <p>
           Il sito <strong className="text-ink">www.assistenza-ai.it</strong> (P.IVA {VAT_NUMBER}, dati del titolare del trattamento indicati nella{" "}

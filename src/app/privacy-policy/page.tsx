@@ -20,6 +20,7 @@ export default function PrivacyPolicyPage() {
       <h1 className="mt-2 font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-4xl">
         Privacy Policy
       </h1>
+      <p className="mt-2 font-mono text-[12px] text-ink-soft">Ultimo aggiornamento: 27 nov 2026</p>
       <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ink-soft">
         <p>
           La presente informativa descrive le modalità di trattamento dei dati personali raccolti tramite il sito <strong className="text-ink">www.assistenza-ai.it</strong> ai sensi del Regolamento (UE) 2016/679 (GDPR).

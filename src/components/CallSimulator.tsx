@@ -116,28 +116,136 @@ const SCENARIOS: Scenario[] = [
   },
   {
     key: "studi-professionali",
-    tabLabel: "Studio",
-    companyName: "Studio Dentistico Verdi",
-    timeLabel: "Ore 13:10 · Pausa pranzo",
-    scenarioTitle: "Nuovo paziente igiene dentale",
+    tabLabel: "Studio Prof.",
+    companyName: "Studio Commerciale Neri",
+    timeLabel: "Ore 11:30 · In riunione",
+    scenarioTitle: "Richiesta appuntamento pratica fiscale",
     badgeType: "appuntamento",
-    badgeText: "PRENOTAZIONE",
-    summaryHeadline: "Igiene dentale (nuovo paziente)",
-    footerNote: "Conferma WhatsApp da inviare alla riapertura dello studio.",
+    badgeText: "APPUNTAMENTO",
+    summaryHeadline: "Nuovo cliente Srl — consulenza bilancio",
+    footerNote: "Richiesta filtrata per pratica e fascia oraria, pronta per la segreteria.",
     turns: [
       {
         speaker: "ai",
-        text: "Buongiorno, risponde l'assistente virtuale dello Studio Dentistico Verdi. In questo momento siamo in visita: mi dica pure.",
+        text: "Buongiorno, risponde l’assistente virtuale dello Studio Commerciale Neri. I professionisti sono in riunione: come posso aiutarla?",
       },
       {
         speaker: "cliente",
-        text: "Vorrei fissare una pulizia dei denti la prossima settimana, preferibilmente dopo le 17.",
-        extract: { label: "Prestazione", value: "Igiene dentale (nuovo paziente) · Dopo le 17:00" },
+        text: "Salve, siamo una piccola Srl di Reggio Emilia e vorremmo fissare un incontro per valutare il passaggio della contabilità.",
+        extract: { label: "Motivo", value: "Nuova Srl — richiesta consulenza contabilità e bilancio" },
       },
       {
         speaker: "ai",
-        text: "Perfetto, verifico la disponibilità serale e le mando conferma su WhatsApp. Mi lascia nome e cognome?",
-        extract: { label: "Canale conferma", value: "WhatsApp · Agenda serale da verificare" },
+        text: "Volentieri. Mi lascia il suo nome e la fascia oraria preferita così lo studio la richiama per confermare l’appuntamento?",
+        extract: { label: "Fascia", value: "Mattina 9:30–12:00 · Da ricontattare oggi" },
+      },
+    ],
+  },
+  {
+    key: "studi-medici-dentistici",
+    tabLabel: "Studio Medico",
+    companyName: "Studio Dentistico Verdi",
+    timeLabel: "Ore 13:15 · Pausa pranzo",
+    scenarioTitle: "Prenotazione visita odontoiatrica",
+    badgeType: "appuntamento",
+    badgeText: "APPUNTAMENTO",
+    summaryHeadline: "Richiesta prima visita + igiene",
+    footerNote: "Solo dati minimi GDPR (nessuna diagnosi al telefono).",
+    turns: [
+      {
+        speaker: "ai",
+        text: "Buongiorno, risponde l’assistente virtuale dello Studio Dentistico Verdi. La segreteria è momentaneamente occupata: desidera fissare o spostare un appuntamento?",
+      },
+      {
+        speaker: "cliente",
+        text: "Vorrei prenotare una visita di controllo e pulizia denti nel pomeriggio, preferibilmente martedì o giovedì.",
+        extract: { label: "Prestazione", value: "Visita di controllo + igiene · Mar/Gio pomeriggio" },
+      },
+      {
+        speaker: "ai",
+        text: "Perfetto, segno la sua preferenza senza raccogliere dati clinici al telefono. La segreteria le invia la conferma su WhatsApp appena rientra.",
+        extract: { label: "Stato", value: "Richiesta appuntamento · Minimizzazione GDPR attiva" },
+      },
+    ],
+  },
+  {
+    key: "caldaie-climatizzazione",
+    tabLabel: "Caldaie & Clima",
+    companyName: "Clima Service Italia",
+    timeLabel: "Ore 18:10 · Picco stagionale",
+    scenarioTitle: "Climatizzatore in blocco / Bollino blu",
+    badgeType: "urgente",
+    badgeText: "URGENTE",
+    summaryHeadline: "Pompa di calore Daikin errore U4",
+    footerNote: "Marca verificata tra quelle autorizzate, zona coperta.",
+    turns: [
+      {
+        speaker: "ai",
+        text: "Buongiorno, risponde l’assistente virtuale di Clima Service. I tecnici sono tutti fuori in assistenza: mi dica marca dell’impianto e problema.",
+      },
+      {
+        speaker: "cliente",
+        text: "Ho una pompa di calore Daikin che segna errore U4 e non scalda, siamo a Parma sud.",
+        extract: { label: "Impianto", value: "Daikin pompa di calore (autorizzata) · Codice U4" },
+      },
+      {
+        speaker: "ai",
+        text: "Confermo che assistiamo Daikin e copriamo Parma sud. Ho segnato la priorità per il tecnico di zona, che la richiama entro sera.",
+        extract: { label: "Zona e stato", value: "Parma sud coperta · Scheda inviata al tecnico" },
+      },
+    ],
+  },
+  {
+    key: "imprese-edili-ristrutturazioni",
+    tabLabel: "Edilizia",
+    companyName: "Impresa Edile Moretti",
+    timeLabel: "Ore 16:05 · In cantiere",
+    scenarioTitle: "Richiesta sopralluogo ristrutturazione",
+    badgeType: "appuntamento",
+    badgeText: "SOPRALLUOGO",
+    summaryHeadline: "Ristrutturazione completa bagno (~9 mq)",
+    footerNote: "Comune, metratura e tempistiche già raccolti prima del sopralluogo.",
+    turns: [
+      {
+        speaker: "ai",
+        text: "Buongiorno, risponde l’assistente virtuale di Impresa Edile Moretti. Il titolare è in cantiere: che tipo di lavoro deve realizzare?",
+      },
+      {
+        speaker: "cliente",
+        text: "Dobbiamo rifare completamente un bagno di circa 9 metri quadri a Monza, vorremmo partire entro due mesi.",
+        extract: { label: "Lavoro", value: "Rifacimento completo bagno (~9 mq) · Avvio entro 2 mesi" },
+      },
+      {
+        speaker: "ai",
+        text: "Perfetto, Monza è nella nostra zona operativa. Le invio un messaggio WhatsApp per allegare 2 foto se vuole, così il titolare prepara il sopralluogo.",
+        extract: { label: "Zona e step", value: "Monza (coperta) · Richiesta foto su WhatsApp" },
+      },
+    ],
+  },
+  {
+    key: "pmi",
+    tabLabel: "PMI B2B",
+    companyName: "Tecnomeccanica Srl",
+    timeLabel: "Ore 17:45 · Ufficio chiuso",
+    scenarioTitle: "Richiesta offerta B2B e smistamento",
+    badgeType: "appuntamento",
+    badgeText: "LEAD B2B",
+    summaryHeadline: "Richiesta fornitura 120 pezzi — ufficio commerciale",
+    footerNote: "Lead qualificato instradato nel CRM prima dell’apertura del mattino.",
+    turns: [
+      {
+        speaker: "ai",
+        text: "Buongiorno, risponde l’assistente virtuale di Tecnomeccanica Srl. Gli uffici sono chiusi: chiama per un ordine in corso o per una nuova richiesta commerciale?",
+      },
+      {
+        speaker: "cliente",
+        text: "Nuova richiesta: cerchiamo un fornitore per un lotto da 120 staffe lavorate, consegna entro fine mese.",
+        extract: { label: "Richiesta", value: "Offerta B2B — lotto 120 staffe · Consegna fine mese" },
+      },
+      {
+        speaker: "ai",
+        text: "Registrato. Mi conferma azienda ed email così domattina alle 8:30 il commerciale ha già la scheda pronta per inviarle il preventivo?",
+        extract: { label: "Instradamento", value: "Ufficio commerciale · Priorità alta" },
       },
     ],
   },
@@ -268,7 +376,7 @@ export function CallSimulator({
 
       <div className={compact ? "p-4 sm:p-5" : "p-5 sm:p-7"}>
         {/* Sector Tabs */}
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Settori simulatore">
+        <div className="flex gap-2 overflow-x-auto pb-1" role="tablist" aria-label="Settori simulatore">
           {SCENARIOS.map((s) => {
             const active = s.key === scenario.key;
             return (
@@ -278,7 +386,7 @@ export function CallSimulator({
                 role="tab"
                 aria-selected={active}
                 onClick={() => handleSelectTab(s.key)}
-                className={`min-h-9 rounded-full px-3.5 text-[13px] font-semibold transition-colors ${
+                className={`min-h-11 shrink-0 whitespace-nowrap rounded-full px-3.5 text-[13px] font-semibold transition-colors ${
                   active
                     ? "bg-ink text-white"
                     : "border border-line bg-surface text-ink-soft hover:text-ink"

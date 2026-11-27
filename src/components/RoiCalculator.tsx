@@ -12,7 +12,7 @@ export function RoiCalculator() {
   const yearlyLost = monthlyLost * 12;
 
   const formatEur = (n: number) =>
-    new Intl.NumberFormat("it-IT", { maximumFractionDigits: 0 }).format(n);
+    Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   function handleSendToForm() {
     const note = `Stima calcolatore: ~${missedPerWeek} chiamate perse/settimana, valore medio ${avgJobValue} €, fatturato recuperabile stimato ${formatEur(monthlyLost)} €/mese.`;
@@ -33,7 +33,7 @@ export function RoiCalculator() {
       className="rounded-xl bg-raised p-6 shadow-[var(--shadow-sm)] sm:p-8"
       aria-labelledby="roi-title"
     >
-      <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
+      <div className="grid gap-8 lg:grid-cols-12 lg:items-stretch">
         <div className="lg:col-span-7">
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
             Calcolatore chiamate perse
@@ -47,11 +47,11 @@ export function RoiCalculator() {
 
           <div className="mt-6 space-y-5">
             <div>
-              <div className="flex justify-between text-[14px]">
+              <div className="flex items-baseline justify-between gap-3 text-[14px]">
                 <label htmlFor="roi-calls" className="font-medium text-ink">
                   Chiamate perse a settimana mentre lavori
                 </label>
-                <span className="font-mono font-medium tabular-nums text-rame">
+                <span className="shrink-0 whitespace-nowrap font-mono font-medium tabular-nums text-rame">
                   {missedPerWeek} / sett
                 </span>
               </div>
@@ -68,11 +68,11 @@ export function RoiCalculator() {
             </div>
 
             <div>
-              <div className="flex justify-between text-[14px]">
+              <div className="flex items-baseline justify-between gap-3 text-[14px]">
                 <label htmlFor="roi-value" className="font-medium text-ink">
                   Valore medio di un intervento o nuovo cliente
                 </label>
-                <span className="font-mono font-medium tabular-nums text-rame">
+                <span className="shrink-0 whitespace-nowrap font-mono font-medium tabular-nums text-rame">
                   {formatEur(avgJobValue)} €
                 </span>
               </div>
@@ -89,11 +89,11 @@ export function RoiCalculator() {
             </div>
 
             <div>
-              <div className="flex justify-between text-[14px]">
+              <div className="flex items-baseline justify-between gap-3 text-[14px]">
                 <label htmlFor="roi-conv" className="font-medium text-ink">
                   Chiamate che diventano clienti se rispondi subito
                 </label>
-                <span className="font-mono font-medium tabular-nums text-rame">
+                <span className="shrink-0 whitespace-nowrap font-mono font-medium tabular-nums text-rame">
                   {conversionPct}%
                 </span>
               </div>
@@ -111,7 +111,7 @@ export function RoiCalculator() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-line bg-surface p-6 lg:col-span-5">
+        <div className="flex h-full flex-col justify-between rounded-lg border border-line bg-surface p-6 lg:col-span-5">
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
             Fatturato perso stimato
           </p>
@@ -130,7 +130,7 @@ export function RoiCalculator() {
             onClick={handleSendToForm}
             className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-5 text-[15px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
           >
-            Blocca le chiamate perse sul tuo numero →
+            Blocca le chiamate perse →
           </button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { GUIDES } from "@/lib/guides";
 import { getBreadcrumbJsonLd, SITE_URL } from "@/lib/site";
 
@@ -77,7 +77,7 @@ export default function GuideIndexPage() {
                 >
                   Leggi la guida →
                 </Link>
-                <span className="font-mono text-[11px] text-ink-soft">Agg. {guide.publishedAt}</span>
+                <span className="font-mono text-[11px] text-ink-soft">Agg. 27 nov 2026</span>
               </div>
             </article>
           ))}
@@ -104,9 +104,7 @@ export default function GuideIndexPage() {
           </Link>
         </div>
 
-        <div className="mt-16 max-w-2xl">
-          <LeadForm title="Vuoi applicare queste guide alla tua attività?" />
-        </div>
+        <LeadBand title="Vuoi applicare queste guide alla tua attività?" />
       </div>
     </>
   );

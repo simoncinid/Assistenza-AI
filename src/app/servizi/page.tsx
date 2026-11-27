@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 
 export const metadata: Metadata = {
   title: "Servizi AI per PMI e Artigiani in Italia",
@@ -68,9 +68,7 @@ export default function ServiziPage() {
         ))}
       </div>
 
-      <div className="mt-16 max-w-2xl">
-        <LeadForm title="Non sai da quale servizio partire?" subtitle="Raccontaci il tuo collo di bottiglia: ti indichiamo la soluzione più rapida da ripagare." />
-      </div>
+      <LeadBand title="Non sai da quale servizio partire?" subtitle="Raccontaci il tuo collo di bottiglia: ti indichiamo la soluzione più rapida da ripagare." />
     </div>
   );
 }

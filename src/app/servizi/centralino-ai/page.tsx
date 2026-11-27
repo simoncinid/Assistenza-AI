@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CallSimulator } from "@/components/CallSimulator";
 import { RoiCalculator } from "@/components/RoiCalculator";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { JsonLd } from "@/components/JsonLd";
 import { getServiceJsonLd, VERTICALS } from "@/lib/site";
 
@@ -68,7 +68,7 @@ export default function CentralinoAiPage() {
           <h2 className="text-[1.5rem] font-semibold tracking-[-0.02em] text-ink">
             Pagine dedicate per settore
           </h2>
-          <div className="mt-4 flex flex-wrap gap-2.5">
+          <div className="mt-4 grid divide-y divide-line border-y border-line sm:grid-cols-2 sm:gap-x-6">
             {VERTICALS.map((v) => (
               <Link
                 key={v.slug}
@@ -81,9 +81,7 @@ export default function CentralinoAiPage() {
           </div>
         </div>
 
-        <div className="mt-14 max-w-2xl">
-          <LeadForm defaultNeed="Centralino AI" />
-        </div>
+        <LeadBand defaultNeed="Centralino AI" />
       </div>
     </>
   );

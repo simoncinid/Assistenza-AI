@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
-import { LeadForm } from "@/components/LeadForm";
+import { LeadBand } from "@/components/LeadBand";
 import { getArticleJsonLd, getGuideBySlug, GUIDES } from "@/lib/guides";
 import { getBreadcrumbJsonLd, getFaqJsonLd } from "@/lib/site";
 
@@ -78,6 +78,7 @@ export default async function GuideDetailPage({
   if (!guide) notFound();
 
   const otherGuides = GUIDES.filter((g) => g.slug !== guide.slug);
+  const formattedDate = new Intl.DateTimeFormat("it-IT", { day: "numeric", month: "short", year: "numeric" }).format(new Date(guide.publishedAt + "T00:00:00Z"));
 
   return (
     <>
@@ -101,9 +102,9 @@ export default async function GuideDetailPage({
         </nav>
 
         <div className="mt-6 grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+          <div className="min-w-0 lg:col-span-8">
             <p className="font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-rame">
-              Guida pratica · {guide.readingTime} · Aggiornata {guide.publishedAt}
+              Guida pratica · {guide.readingTime} · Aggiornata il {formattedDate}
             </p>
             <h1 className="mt-3 font-sans text-[2rem] font-semibold leading-[1.1] tracking-[-0.03em] text-ink sm:text-[2.625rem]">
               {guide.h1}
@@ -151,7 +152,27 @@ export default async function GuideDetailPage({
                         );
                       }
                       return (
-                        <div key={bIdx} className="overflow-x-auto rounded-lg border border-line bg-raised">
+                        <div key={bIdx} className="space-y-3">
+                          {/* Mobile stacked cards (G-02: zero horizontal overflow on 390px) */}
+                          <div className="space-y-3 sm:hidden">
+                            {block.rows.map((row, rIdx) => (
+                              <dl key={rIdx} className="rounded-lg border border-line bg-raised p-4 text-[14px]">
+                                <dt className="font-semibold text-ink">{row[0]}</dt>
+                                <div className="mt-2.5 space-y-2 border-t border-line pt-2.5">
+                                  {row.slice(1).map((cell, cIdx) => (
+                                    <div key={cIdx} className="flex flex-col gap-0.5">
+                                      <dt className="font-mono text-[11px] uppercase tracking-wider text-ink-soft">
+                                        {block.headers[cIdx + 1]}
+                                      </dt>
+                                      <dd className="text-ink-soft">{cell}</dd>
+                                    </div>
+                                  ))}
+                                </div>
+                              </dl>
+                            ))}
+                          </div>
+                          {/* Desktop responsive table */}
+                          <div className="hidden overflow-x-auto rounded-lg border border-line bg-raised sm:block">
                           <table className="w-full border-collapse text-left text-[14px]">
                             <thead className="border-b border-line bg-surface">
                               <tr>
@@ -177,6 +198,7 @@ export default async function GuideDetailPage({
                               ))}
                             </tbody>
                           </table>
+                          </div>
                         </div>
                       );
                     })}
@@ -208,14 +230,14 @@ export default async function GuideDetailPage({
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
                 Risorse e pagine correlate
               </p>
-              <div className="mt-4 flex flex-wrap gap-2.5">
+              <div className="mt-4 grid divide-y divide-line border-t border-line sm:grid-cols-2 sm:gap-x-6">
                 {guide.relatedPaths.map((href) => (
                   <Link
                     key={href}
                     href={href}
-                    className="inline-flex min-h-10 items-center rounded-md border border-line bg-surface px-3.5 text-[13px] font-medium text-ink transition-colors hover:border-rame hover:text-rame"
+                    className="flex min-h-14 items-center justify-between gap-3 py-2 text-[14px] font-medium text-ink transition-colors hover:text-rame"
                   >
-                    {LINK_LABELS[href] ?? href}
+                    <span>{LINK_LABELS[href] ?? href}</span><span className="shrink-0 text-rame">→</span>
                   </Link>
                 ))}
               </div>
@@ -243,14 +265,30 @@ export default async function GuideDetailPage({
           </div>
 
           <aside className="lg:col-span-4">
-            <div className="lg:sticky lg:top-24">
-              <LeadForm
-                title="Vuoi provarlo sul tuo numero?"
-                subtitle="In 15 minuti simuliamo le chiamate reali della tua attività e vediamo se si ripaga."
-              />
+            <div className="rounded-xl border border-line bg-raised p-6 shadow-[var(--shadow-sm)] lg:sticky lg:top-24">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-rame">
+                Demo gratuita · 15 min
+              </p>
+              <h2 className="mt-2 text-[18px] font-semibold leading-snug text-ink">
+                Vuoi provarlo sul tuo numero?
+              </h2>
+              <p className="mt-2 text-[14px] leading-relaxed text-ink-soft">
+                Simuliamo le chiamate reali della tua attività e verifichiamo insieme se si ripaga dal primo mese.
+              </p>
+              <a
+                href="#contatti-form"
+                className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-md bg-rame px-4 text-[14px] font-semibold text-on-rame transition-colors hover:bg-rame-hover"
+              >
+                Richiedi demo (15 min) →
+              </a>
+              <p className="mt-3 text-[12px] text-ink-soft">
+                Zero cambio numero · Risposta entro 1 giorno lavorativo.
+              </p>
             </div>
           </aside>
         </div>
+
+        <LeadBand title="Vuoi provarlo sul tuo numero?" />
       </article>
     </>
   );
