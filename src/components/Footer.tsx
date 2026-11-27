@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { INFO_EMAIL, QUOTES_EMAIL, SITE_NAME, VERTICALS } from "@/lib/site";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_HREF,
+  INFO_EMAIL,
+  OWNER_NAME,
+  SITE_NAME,
+  VAT_NUMBER,
+  VERTICALS,
+} from "@/lib/site";
 
 export function Footer() {
   return (
@@ -21,16 +30,21 @@ export function Footer() {
           </p>
           <div className="mt-4 space-y-1.5 text-[13px] text-[#C7C4BC]">
             <p>
-              Info:{" "}
+              Email:{" "}
               <a href={`mailto:${INFO_EMAIL}`} className="text-[#F7F6F3] underline underline-offset-2 hover:text-white">
                 {INFO_EMAIL}
               </a>
             </p>
             <p>
-              Preventivi:{" "}
-              <a href={`mailto:${QUOTES_EMAIL}`} className="text-[#F7F6F3] underline underline-offset-2 hover:text-white">
-                {QUOTES_EMAIL}
+              Telefono:{" "}
+              <a href={BUSINESS_PHONE_HREF} className="text-[#F7F6F3] underline underline-offset-2 hover:text-white">
+                {BUSINESS_PHONE_DISPLAY}
               </a>
+            </p>
+            <p className="pt-1 text-[#9E9B94]">
+              {OWNER_NAME} · P.IVA {VAT_NUMBER}
+              <br />
+              {BUSINESS_ADDRESS}
             </p>
           </div>
         </div>
@@ -69,8 +83,8 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-5 text-center text-[13px] text-[#9E9B94]">
-        © {new Date().getFullYear()} {SITE_NAME} · www.assistenza-ai.it · Conformità GDPR e AI Act Art. 50
+      <div className="border-t border-white/10 px-4 py-5 text-center text-[13px] text-[#9E9B94]">
+        © {new Date().getFullYear()} {SITE_NAME} · {OWNER_NAME} · P.IVA {VAT_NUMBER} · {BUSINESS_ADDRESS} · Conformità GDPR e AI Act Art. 50
       </div>
     </footer>
   );

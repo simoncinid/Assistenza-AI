@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { INFO_EMAIL } from "@/lib/site";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE_DISPLAY,
+  INFO_EMAIL,
+  OWNER_NAME,
+  VAT_NUMBER,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -18,17 +24,22 @@ export default function PrivacyPolicyPage() {
         <p>
           La presente informativa descrive le modalità di trattamento dei dati personali raccolti tramite il sito <strong className="text-ink">www.assistenza-ai.it</strong> ai sensi del Regolamento (UE) 2016/679 (GDPR).
         </p>
-        <h2 className="pt-2 text-[19px] font-semibold text-ink">1. Dati raccolti e finalità</h2>
+        <h2 className="pt-2 text-[19px] font-semibold text-ink">1. Titolare del trattamento</h2>
+        <p>
+          <strong className="text-ink">{OWNER_NAME}</strong> — P.IVA {VAT_NUMBER} — Sede: {BUSINESS_ADDRESS} — Tel. {BUSINESS_PHONE_DISPLAY} — Email:{" "}
+          <a href={`mailto:${INFO_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">{INFO_EMAIL}</a>.
+        </p>
+        <h2 className="pt-2 text-[19px] font-semibold text-ink">2. Dati raccolti e finalità</h2>
         <p>
           I dati inviati tramite il modulo di contatto (nome, azienda, telefono/WhatsApp, email, settore, esigenza e note) vengono utilizzati esclusivamente per rispondere alla tua richiesta di informazioni o demo e preparare un&apos;eventuale proposta commerciale.
         </p>
-        <h2 className="pt-2 text-[19px] font-semibold text-ink">2. Base giuridica e conservazione</h2>
+        <h2 className="pt-2 text-[19px] font-semibold text-ink">3. Base giuridica e conservazione</h2>
         <p>
           Il trattamento si basa sul consenso esplicito espresso prima dell&apos;invio del modulo e sull&apos;esecuzione di misure precontrattuali richieste dall&apos;interessato. I dati non vengono ceduti a terzi per finalità promozionali e sono conservati solo per il tempo necessario a gestire la richiesta.
         </p>
-        <h2 className="pt-2 text-[19px] font-semibold text-ink">3. Diritti dell&apos;interessato</h2>
+        <h2 className="pt-2 text-[19px] font-semibold text-ink">4. Diritti dell&apos;interessato</h2>
         <p>
-          Puoi richiedere in qualsiasi momento l&apos;accesso, la rettifica o la cancellazione dei tuoi dati scrivendo a{" "}
+          Puoi richiedere in qualsiasi momento l&apos;accesso, la rettifica, la portabilità o la cancellazione dei tuoi dati scrivendo a{" "}
           <a href={`mailto:${INFO_EMAIL}`} className="font-medium text-rame hover:text-rame-hover">{INFO_EMAIL}</a>.
         </p>
       </div>

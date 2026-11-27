@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
-import { INFO_EMAIL, QUOTES_EMAIL } from "@/lib/site";
+import {
+  BUSINESS_ADDRESS,
+  BUSINESS_PHONE_DISPLAY,
+  BUSINESS_PHONE_HREF,
+  INFO_EMAIL,
+  OWNER_NAME,
+  VAT_NUMBER,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contatti e Demo Gratuita",
@@ -24,12 +31,18 @@ export default function ContattiPage() {
 
           <div className="mt-8 space-y-3 border-t border-line pt-6 text-[15px] text-ink-soft">
             <p>
-              <strong className="font-semibold text-ink">Informazioni generali:</strong>{" "}
+              <strong className="font-semibold text-ink">Email:</strong>{" "}
               <a href={`mailto:${INFO_EMAIL}`} className="text-rame hover:text-rame-hover">{INFO_EMAIL}</a>
             </p>
             <p>
-              <strong className="font-semibold text-ink">Preventivi e demo:</strong>{" "}
-              <a href={`mailto:${QUOTES_EMAIL}`} className="text-rame hover:text-rame-hover">{QUOTES_EMAIL}</a>
+              <strong className="font-semibold text-ink">Telefono:</strong>{" "}
+              <a href={BUSINESS_PHONE_HREF} className="text-rame hover:text-rame-hover">{BUSINESS_PHONE_DISPLAY}</a>
+            </p>
+            <p>
+              <strong className="font-semibold text-ink">Sede:</strong> {BUSINESS_ADDRESS}
+            </p>
+            <p className="text-[14px]">
+              Titolare: {OWNER_NAME} · P.IVA {VAT_NUMBER}
             </p>
             <p className="text-[14px]">Tempi di risposta: entro 1 giorno lavorativo, in italiano.</p>
           </div>
