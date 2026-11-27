@@ -6,9 +6,8 @@ import Link from "next/link";
 const NAV_LINKS = [
   { href: "/servizi/centralino-ai", label: "Centralino AI" },
   { href: "/servizi", label: "Servizi" },
-  { href: "/settori/idraulici", label: "Idraulici" },
-  { href: "/settori/elettricisti", label: "Elettricisti" },
-  { href: "/settori/officine", label: "Officine" },
+  { href: "/#settori", label: "Settori" },
+  { href: "/guide", label: "Guide" },
   { href: "/faq", label: "FAQ" },
   { href: "/chi-siamo", label: "Chi siamo" },
 ];
@@ -26,7 +25,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/8 bg-surface/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-black/8 bg-surface/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[72rem] items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
@@ -46,7 +45,7 @@ export function Header() {
 
         <nav
           aria-label="Navigazione principale"
-          className="hidden items-center gap-6 text-[14px] font-medium text-ink-soft lg:flex"
+          className="hidden items-center gap-5 text-[13.5px] font-medium text-ink-soft lg:flex"
         >
           {NAV_LINKS.map((item) => (
             <Link
@@ -62,7 +61,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             href="/contatti"
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-rame px-4 text-[14px] font-semibold text-on-rame transition-colors hover:bg-rame-hover sm:px-5 sm:text-[15px]"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-rame px-3 text-[13px] font-semibold text-on-rame transition-colors hover:bg-rame-hover sm:px-5 sm:text-[15px]"
           >
             Demo gratuita
           </Link>

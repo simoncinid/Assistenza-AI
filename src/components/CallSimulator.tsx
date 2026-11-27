@@ -263,7 +263,7 @@ export function CallSimulator({
         <p id="simulatore-title" className="text-[13px] font-semibold text-ink-soft">
           Simulatore Centralino AI
         </p>
-        <span className="font-mono text-[11px] font-medium text-ink-soft">Art. 50 AI Act</span>
+        <span className="w-10" aria-hidden="true" />
       </div>
 
       <div className={compact ? "p-4 sm:p-5" : "p-5 sm:p-7"}>
@@ -361,12 +361,12 @@ export function CallSimulator({
 
           {/* WhatsApp summary pane */}
           <div
-            className={`flex flex-col justify-between rounded-lg border border-whatsapp/20 bg-whatsapp-bg p-4 ${
+            className={`flex flex-col justify-between rounded-lg border border-line bg-surface p-4 ${
               compact ? "" : "lg:col-span-5"
             }`}
           >
             <div>
-              <div className="flex items-center justify-between gap-2 border-b border-whatsapp/15 pb-2.5">
+              <div className="flex items-center justify-between gap-2 border-b border-line pb-2.5">
                 <p className="font-mono text-[11px] font-medium uppercase tracking-wider text-whatsapp">
                   Scheda WhatsApp · +10s
                 </p>
@@ -408,11 +408,11 @@ export function CallSimulator({
             </div>
 
             <div className="mt-3.5 flex items-center justify-between gap-3 pt-1">
-              <span className="text-[12px] text-ink-soft">Zero API · demo reale</span>
+              <span className="text-[12px] text-ink-soft">Conformità Art. 50 AI Act · demo reale</span>
               <a
                 href="#contatti-form"
                 onClick={() => trackEvent("cta_click", { label: "simulator_cta", verticale: scenario.tabLabel })}
-                className="text-[13px] font-semibold text-rame hover:text-rame-hover"
+                className="inline-flex min-h-11 items-center text-[13px] font-semibold text-rame hover:text-rame-hover"
               >
                 Attivalo sul tuo numero →
               </a>

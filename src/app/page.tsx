@@ -5,9 +5,21 @@ import { RoiCalculator } from "@/components/RoiCalculator";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
 import { getFaqJsonLd, getServiceJsonLd, HOME_FAQS, VERTICALS } from "@/lib/site";
+import { GUIDES } from "@/lib/guides";
+
+const VERTICAL_ICON: Record<string, string> = {
+  idraulici: "idraulici",
+  elettricisti: "elettricisti",
+  officine: "officine",
+  "caldaie-climatizzazione": "wrench",
+  "studi-medici-dentistici": "studi-professionali",
+  "studi-professionali": "studi-professionali",
+  "imprese-edili-ristrutturazioni": "artigiani",
+  pmi: "pmi",
+};
 
 export const metadata: Metadata = {
-  title: "Assistenza AI per PMI e Artigiani | Centralino AI e Automazioni",
+  title: { absolute: "Assistenza AI per PMI e Artigiani | Centralino AI e Automazioni" },
   description:
     "Centralino AI 24/7 sul tuo numero, WhatsApp AI e automazioni chiavi in mano per PMI, artigiani e studi italiani. Prova il simulatore interattivo.",
   alternates: { canonical: "/" },
@@ -187,7 +199,7 @@ export default function HomePage() {
               >
                 <span className="inline-flex items-center gap-2.5 font-mono text-[13px] font-medium text-ink-soft sm:col-span-1">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/icons/${v.slug === "pmi-artigiani" ? "pmi" : v.slug}.svg`} alt="" width={20} height={20} className="h-5 w-5 shrink-0 opacity-80" />
+                  <img src={`/icons/${VERTICAL_ICON[v.slug] ?? "pmi"}.svg`} alt="" width={20} height={20} className="h-5 w-5 shrink-0 opacity-80" />
                   <span>0{idx + 1}</span>
                 </span>
                 <span className="text-[19px] font-semibold text-ink group-hover:text-rame sm:col-span-4">
@@ -258,6 +270,39 @@ export default function HomePage() {
                 Se hai già una segretaria dedicata che risponde sempre al primo squillo, oppure ricevi meno di 2 chiamate a settimana, non hai bisogno di questo servizio. Preferiamo dirtelo subito in call piuttosto che venderti qualcosa che non si ripaga.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* GUIDE PRATICHE */}
+      <section className="py-14 lg:py-16 border-b border-line">
+        <div className="mx-auto max-w-[72rem] px-4 sm:px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">
+                Guide pratiche
+              </p>
+              <h2 className="mt-2 text-[1.5rem] font-semibold leading-[1.15] tracking-[-0.03em] text-ink sm:text-[2rem]">
+                Costi reali, confronti e istruzioni operative
+              </h2>
+            </div>
+            <Link href="/guide" className="text-[14px] font-semibold text-rame hover:text-rame-hover">
+              Tutte le guide →
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {GUIDES.map((g) => (
+              <Link
+                key={g.slug}
+                href={`/guide/${g.slug}`}
+                className="group flex flex-col justify-between rounded-xl border border-line bg-raised p-5 transition-colors hover:border-rame"
+              >
+                <h3 className="text-[16px] font-semibold leading-snug text-ink group-hover:text-rame">
+                  {g.h1}
+                </h3>
+                <p className="mt-2 text-[14px] text-ink-soft">{g.metaDescription}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
-import { INFO_EMAIL, VAT_NUMBER } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { getBreadcrumbJsonLd, INFO_EMAIL, SITE_NAME, SITE_URL, VAT_NUMBER } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contatti e Demo Gratuita",
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 
 export default function ContattiPage() {
   return (
-    <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
+    <>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "ContactPage", name: `Contatti e Demo — ${SITE_NAME}`, url: `${SITE_URL}/contatti`, inLanguage: "it-IT" }} />
+      <JsonLd data={getBreadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contatti", path: "/contatti" }])} />
+      <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
       <div className="grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">Contatti</p>
@@ -41,5 +45,6 @@ export default function ContattiPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

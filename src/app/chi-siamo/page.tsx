@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { LeadForm } from "@/components/LeadForm";
 import { JsonLd } from "@/components/JsonLd";
 import {
+  getBreadcrumbJsonLd,
   getProfessionalServiceJsonLd,
   INFO_EMAIL,
+  SITE_NAME,
+  SITE_URL,
   VAT_NUMBER,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Chi siamo | Assistenza AI per PMI e Artigiani",
+  title: "Chi Siamo: Tecnici Italiani per AI PMI",
   description:
     "Assistenza AI è il team tecnico italiano dedicato allo sviluppo e alla gestione chiavi in mano di sistemi AI per PMI, artigiani e studi professionali.",
   alternates: { canonical: "/chi-siamo" },
@@ -18,6 +21,8 @@ export default function ChiSiamoPage() {
   return (
     <>
       <JsonLd data={getProfessionalServiceJsonLd()} />
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "AboutPage", name: `Chi siamo — ${SITE_NAME}`, url: `${SITE_URL}/chi-siamo`, inLanguage: "it-IT" }} />
+      <JsonLd data={getBreadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Chi siamo", path: "/chi-siamo" }])} />
       <div className="mx-auto max-w-[72rem] px-4 py-14 sm:px-6 lg:py-20">
         <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-rame">Chi siamo</p>
         <h1 className="mt-2 max-w-[24ch] font-sans text-[2.125rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-5xl">

@@ -64,6 +64,7 @@ export function Footer() {
           <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#9E9B94]">Azienda e Legale</p>
           <ul className="mt-3 space-y-2.5 text-[14px] text-[#E6E3DD]">
             <li><Link href="/chi-siamo" className="hover:text-white">Chi siamo</Link></li>
+            <li><Link href="/guide" className="hover:text-white">Guide pratiche</Link></li>
             <li><Link href="/faq" className="hover:text-white">Domande frequenti (FAQ)</Link></li>
             <li><Link href="/contatti" className="hover:text-white">Contatti e Demo</Link></li>
             <li><Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>

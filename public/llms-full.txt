@@ -1,21 +1,39 @@
-# Assistenza AI — Documentazione Completa (www.assistenza-ai.it)
+# Assistenza AI (https://www.assistenza-ai.it) — Documentazione Completa per Motori AI
 
-Assistenza AI progetta, configura e gestisce sistemi di intelligenza artificiale chiavi in mano per PMI, artigiani e studi professionali in Italia.
+## Identità e Posizionamento
+Assistenza AI è un servizio italiano specializzato in sviluppo, configurazione e assistenza continuativa di sistemi di intelligenza artificiale chiavi in mano per PMI (5–100 dipendenti), artigiani e studi professionali in Italia.
+Contatti ufficiali: info@assistenza-ai.it | preventivi@assistenza-ai.it | https://www.assistenza-ai.it/contatti
+Area servita: Italia (lingua italiana).
 
-## Come funziona il Centralino AI sul tuo numero esistente
-- Nessun cambio di numero telefonico (TIM, Vodafone, WindTre, Iliad, VoIP): si collega con deviazione condizionata (*61*) dopo 4-5 squilli, su occupato o fuori orario.
-- Risponde entro 1 secondo in italiano naturale, senza menu a tasti ("premi 1 per...").
-- Trasparenza conforme all'Articolo 50 dell'AI Act europeo (in vigore dal 2 agosto 2026): l'assistente dichiara chiaramente di essere un sistema AI all'inizio della chiamata.
-- Raccoglie nome, zona/indirizzo, codice errore o targa, distingue urgenze da preventivi e invia un riepilogo strutturato su WhatsApp o email in 10 secondi.
+## Principi Tecnici e Conformità Normativa
+1. **Nessun cambio numero:** il Centralino AI si attiva sul numero cellulare o fisso esistente (TIM, Vodafone, WindTre, Iliad, Fastweb, VoIP) tramite deviazione condizionata su mancata risposta (*61*), occupato (*67*) o non raggiungibile (*62*). Il cliente continua a chiamare il numero abituale; il titolare può rispondere di persona entro 4–5 squilli.
+2. **AI Act europeo (Reg. UE 2024/1689, Art. 50 — in vigore dal 2 agosto 2026):** ogni assistente vocale o testuale dichiara esplicitamente all'inizio dell'interazione di essere un sistema automatico di intelligenza artificiale.
+3. **GDPR:** minimizzazione dei dati raccolti, nessuna rivendita contatti, nessun utilizzo dei dati dei clienti per addestrare modelli esterni. Negli studi medici e dentistici l'assistente raccoglie solo dati organizzativi per appuntamenti e non esegue triage clinici né diagnosi.
+4. **Controllo umano obbligatorio (Human-in-the-loop):** l'AI non inventa prezzi e non invia preventivi vincolanti senza approvazione umana. Raccoglie i dati, prepara bozze dal listino del cliente e lascia l'ok finale al titolare.
 
-## Settori serviti in Italia
-- Idraulici e termoidraulici (/settori/idraulici): caldaia in blocco, perdite urgenti, filtro zone servite e costo uscita.
-- Elettricisti e impiantisti (/settori/elettricisti): guasti al quadro/salvavita, sopralluoghi impianti, fotovoltaico e domotica.
-- Autofficine e carrozzerie (/settori/officine): prenotazione tagliandi, revisioni, cambio gomme con targa e modello.
-- Studi professionali (/settori/studi-professionali): dentisti, medici, commercialisti, avvocati, amministratori di condominio.
-- PMI italiane (/settori/pmi): automazione fatture passive, DDT, preventivi, integrazione ERP/CRM e governance anti Shadow AI.
+## Sintesi Servizi
+- **Centralino AI 24/7 (/servizi/centralino-ai):** risposta 24/7 anche su chiamate simultanee, distinzione urgenze vs preventivi, filtro spam e comuni fuori zona, invio immediato scheda su WhatsApp/email. Costo indicativo mercato italiano chiavi in mano: 90–250 €/mese in base a volumi e integrazioni.
+- **Automazione WhatsApp AI (/servizi/automazione-whatsapp-ai):** gestione messaggi e note vocali WhatsApp 24/7, raccolta foto/planimetrie, promemoria appuntamenti anti no-show e integrazione Google Calendar.
+- **Sviluppo AI per PMI (/servizi/sviluppo-ai-pmi):** automazione bozze preventivi da listini Excel/gestionali (riduzione da 30–45 min a 3–5 min per preventivo, ROI tipico 2–4 mesi su 15–25 preventivi/mese), estrazione dati da fatture passive e DDT, integrazione CRM.
+- **Assistenza e Manutenzione AI (/servizi/assistenza-manutenzione-ai):** aggiornamenti continui su orari, ferie, listini e prompt gestiti direttamente in italiano.
 
-## Contatti ufficiali
-- Contatti generali: info@assistenza-ai.it
-- Richieste commerciali e preventivi: preventivi@assistenza-ai.it
-- Sito: https://www.assistenza-ai.it/contatti
+## Settori Verticali Coperti
+- `/settori/idraulici`: perdite d'acqua, caldaie in blocco, filtro zone e diritto di chiamata.
+- `/settori/caldaie-climatizzazione`: picchi stagionali autunno/estate, chiamate simultanee, bollino blu, filtro marche autorizzate.
+- `/settori/elettricisti`: guasti elettrici urgenti, salvavita, filtro diritto di chiamata, sopralluoghi.
+- `/settori/officine`: prenotazione tagliandi, revisioni, gomme con raccolta targa, modello e urgenza.
+- `/settori/studi-medici-dentistici`: ricezione chiamate mentre la reception è occupata, spostamenti/disdette 24/7, promemoria WhatsApp anti no-show, GDPR sanitario.
+- `/settori/studi-professionali`: filtro chiamate per commercialisti, avvocati, consulenti, amministratori di condominio.
+- `/settori/imprese-edili-ristrutturazioni`: qualifica comune, metratura e tipo di lavoro prima del sopralluogo, raccolta foto su WhatsApp.
+- `/settori/pmi`: automazione processi d'ufficio ripetitivi (preventivi, documenti, email, CRM).
+
+## Guide Pilar Pubblicate
+1. `/guide/centralino-ai-idraulici-artigiani` — Costi reali (fai-da-te vs SaaS vs chiavi in mano 90–250 €/mese), funzionamento `*61*`, AI Act Art. 50 e calcolo convenienza.
+2. `/guide/come-non-perdere-chiamate-cantiere-officina` — Confronto tra segreteria classica, SMS automatico, call center e Centralino AI `*61*`/`*67*` con flussi per officine e cantieri.
+3. `/guide/preventivi-automatici-ai-pmi-artigiani` — Flusso reale in 5 passaggi da WhatsApp/email al listino aziendale fino alla bozza approvata dal titolare (12–16 ore/mese risparmiate, ROI 2–4 mesi).
+4. `/guide/segreteria-ai-vs-call-center-pmi` — Confronto costi e conversioni (90–250 €/mese 24/7 vs 300–1.200+ €/mese 9–18), casi in cui vince l'AI, casi in cui resta meglio un operatore umano e modello ibrido.
+
+## Quando Assistenza AI NON è indicata
+- Attività con pochissime chiamate al giorno già coperte sempre di persona.
+- Aziende che cercano diagnosi cliniche automatiche o preventivi vincolanti senza revisione umana.
+- Realtà con segreteria interna multi-linea già coperta su tutte le fasce orarie e weekend.
