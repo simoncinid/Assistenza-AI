@@ -70,20 +70,20 @@ export default function ServiziPage() {
       </div>
 
       <section className="mt-14">
-        <div className="hidden grid-cols-12 gap-4 border-b border-line-strong pb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft lg:grid">
-          <div className="col-span-3">Servizio</div>
-          <div className="col-span-3">Per chi</div>
-          <div className="col-span-4">Cosa fa</div>
-          <div className="col-span-2 text-right">Attivazione</div>
+        <div className="hidden gap-6 border-b border-line-strong pb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft lg:grid lg:grid-cols-[1.05fr_1fr_1.55fr_max-content]">
+          <div>Servizio</div>
+          <div>Per chi</div>
+          <div>Cosa fa</div>
+          <div className="text-right">Attivazione</div>
         </div>
 
         <div className="divide-y divide-line border-b border-line">
           {SERVICES.map((s) => (
             <div
               key={s.href}
-              className="grid grid-cols-1 gap-4 py-6 lg:grid-cols-12 lg:items-center lg:py-7"
+              className="grid grid-cols-1 gap-4 py-6 lg:grid-cols-[1.05fr_1fr_1.55fr_max-content] lg:items-center lg:gap-6 lg:py-7"
             >
-              <div className="min-w-0 lg:col-span-3">
+              <div className="min-w-0">
                 <p className="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-rame">
                   {s.tag}
                 </p>
@@ -94,21 +94,21 @@ export default function ServiziPage() {
                 </h2>
               </div>
 
-              <div className="min-w-0 lg:col-span-3">
+              <div className="min-w-0">
                 <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-soft lg:hidden">
                   Per chi
                 </p>
                 <p className="mt-0.5 text-[14px] leading-relaxed text-ink">{s.forWho}</p>
               </div>
 
-              <div className="min-w-0 lg:col-span-4">
+              <div className="min-w-0">
                 <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-ink-soft lg:hidden">
                   Cosa fa
                 </p>
                 <p className="mt-0.5 text-[14px] leading-relaxed text-ink-soft">{s.whatItDoes}</p>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-3 lg:col-span-2 lg:flex-col lg:items-end lg:text-right">
+              <div className="flex flex-wrap items-center justify-between gap-3 lg:flex-col lg:items-end lg:text-right">
                 <span className="whitespace-nowrap font-mono text-[12px] text-ink-soft">{s.setup}</span>
                 <Link
                   href={s.href}

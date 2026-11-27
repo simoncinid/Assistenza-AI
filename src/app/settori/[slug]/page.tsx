@@ -164,14 +164,23 @@ export default async function VerticalPage({
 
             <div className="mt-8 rounded-xl border border-line bg-raised p-5">
               <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-rame">
-                Attivazione rapida · Zero cambio numero
+                {vertical.slug === "pmi"
+                  ? "Progetto su misura · Integrazione nei tuoi strumenti"
+                  : "Attivazione rapida · Zero cambio numero"}
               </p>
               <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">
-                Vuoi verificare come gestiamo i casi specifici del tuo lavoro? Compila il modulo qui accanto: rispondiamo entro 1 giorno lavorativo con una simulazione sul tuo numero di prova.
+                {vertical.slug === "pmi"
+                  ? "Vuoi capire quali processi della tua PMI si ripagano prima? Compila il modulo qui accanto: rispondiamo entro 1 giorno lavorativo con una valutazione concreta."
+                  : "Vuoi verificare come gestiamo i casi specifici del tuo lavoro? Compila il modulo qui accanto: rispondiamo entro 1 giorno lavorativo con una simulazione sul tuo numero di prova."}
               </p>
               <div className="mt-3 flex flex-wrap gap-4 text-[14px] font-semibold">
-                <Link href="/servizi/centralino-ai" className="inline-flex min-h-11 items-center text-rame hover:text-rame-hover">
-                  Come funziona il Centralino AI →
+                <Link
+                  href={vertical.slug === "pmi" ? "/servizi/sviluppo-ai-pmi" : "/servizi/centralino-ai"}
+                  className="inline-flex min-h-11 items-center text-rame hover:text-rame-hover"
+                >
+                  {vertical.slug === "pmi"
+                    ? "Come funziona lo Sviluppo AI per PMI →"
+                    : "Come funziona il Centralino AI →"}
                 </Link>
                 <Link href="/faq" className="inline-flex min-h-11 items-center text-ink-soft hover:text-ink">
                   Tutte le 20 FAQ →

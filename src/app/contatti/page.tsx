@@ -33,7 +33,7 @@ export default function ContattiPage() {
             <ol className="mt-3 space-y-2.5 text-[14px] leading-snug text-ink-soft">
               <li className="flex gap-2.5"><span className="font-mono text-rame">01</span><span>Ti rispondiamo entro 1 giorno lavorativo per fissare 15 minuti.</span></li>
               <li className="flex gap-2.5"><span className="font-mono text-rame">02</span><span>Simuliamo dal vivo una chiamata reale sul tuo settore.</span></li>
-              <li className="flex gap-2.5"><span className="font-mono text-rame">03</span><span>Decidi in piena libertà se avviare la configurazione (5–7 gg).</span></li>
+              <li className="flex gap-2.5"><span className="font-mono text-rame">03</span><span>Decidi in piena libertà se avviare la configurazione <span className="whitespace-nowrap">(5–7 gg)</span>.</span></li>
             </ol>
           </div>
 

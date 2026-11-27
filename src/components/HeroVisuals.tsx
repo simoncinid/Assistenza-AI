@@ -125,9 +125,9 @@ export function SectorWhatsAppCard({ sector }: { sector: SimulatorSectorKey }) {
       <div className="flex items-center justify-between gap-2 border-b border-line pb-3">
         <div className="min-w-0">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-rame">
-            Esempio scheda WhatsApp · {data.company}
+            Scheda WhatsApp · Esempio
           </p>
-          <p className="mt-0.5 text-[12px] text-ink-soft">{data.time}</p>
+          <p className="mt-0.5 text-[12px] text-ink-soft">{data.company} · {data.time}</p>
         </div>
         <span
           className={
@@ -159,7 +159,7 @@ export function SectorWhatsAppCard({ sector }: { sector: SimulatorSectorKey }) {
         <span>{data.footer}</span>
         <a
           href="#simulatore"
-          className="shrink-0 font-semibold text-rame hover:text-rame-hover"
+          className="inline-flex shrink-0 items-center py-3 -my-3 font-semibold text-rame hover:text-rame-hover"
         >
           Prova live ↓
         </a>
