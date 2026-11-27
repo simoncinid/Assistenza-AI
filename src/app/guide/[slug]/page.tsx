@@ -25,6 +25,24 @@ const LINK_LABELS: Record<string, string> = {
   "/contatti": "Richiedi una demo gratuita",
 };
 
+function renderInlineLinks(text: string) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, idx) => {
+    const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (!m) return <span key={idx}>{part}</span>;
+    const [, label, href] = m;
+    return (
+      <Link
+        key={idx}
+        href={href}
+        className="font-medium text-rame underline decoration-rame/40 underline-offset-2 hover:text-rame-hover"
+      >
+        {label}
+      </Link>
+    );
+  });
+}
+
 export function generateStaticParams() {
   return GUIDES.map((g) => ({ slug: g.slug }));
 }
@@ -113,7 +131,7 @@ export default async function GuideDetailPage({
                       if (block.type === "p") {
                         return (
                           <p key={bIdx} className="text-[16px] leading-[1.65] text-ink-soft">
-                            {block.text}
+                            {renderInlineLinks(block.text)}
                           </p>
                         );
                       }
@@ -127,7 +145,7 @@ export default async function GuideDetailPage({
                             }`}
                           >
                             {block.items.map((item, iIdx) => (
-                              <li key={iIdx}>{item}</li>
+                              <li key={iIdx}>{renderInlineLinks(item)}</li>
                             ))}
                           </Tag>
                         );

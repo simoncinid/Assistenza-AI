@@ -59,7 +59,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Puoi testare dal vivo il dialogo e la scheda WhatsApp nel [Simulatore Centralino AI](https://app.notion.com/#simulatore)."
+            "text": "Puoi testare dal vivo il dialogo e la scheda WhatsApp nel [Simulatore Centralino AI](/#simulatore)."
           }
         ]
       },
@@ -128,7 +128,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Puoi inserire i tuoi numeri reali nel [Calcolatore Chiamate Perse & ROI](https://app.notion.com/#calcolatore-roi)."
+            "text": "Puoi inserire i tuoi numeri reali nel [Calcolatore Chiamate Perse & ROI](/#calcolatore-roi)."
           },
           {
             "type": "p",
@@ -163,7 +163,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Approfondisci le pagine dedicate per settore: [Centralino AI per Idraulici](https://app.notion.com/settori/idraulici), [Centralino AI per Elettricisti](https://app.notion.com/settori/elettricisti) e [Centralino AI per Autofficine](https://app.notion.com/settori/officine), oppure scopri il servizio completo su [Centralino AI 24/7](https://app.notion.com/servizi/centralino-ai)."
+            "text": "Approfondisci le pagine dedicate per settore: [Centralino AI per Idraulici](/settori/idraulici), [Centralino AI per Elettricisti](/settori/elettricisti) e [Centralino AI per Autofficine](/settori/officine), oppure scopri il servizio completo su [Centralino AI 24/7](/servizi/centralino-ai)."
           }
         ]
       }
@@ -223,7 +223,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Calcola in 30 secondi quanto vale questo buco per la tua attività con il [Calcolatore Chiamate Perse](https://app.notion.com/#calcolatore-roi)."
+            "text": "Calcola in 30 secondi quanto vale questo buco per la tua attività con il [Calcolatore Chiamate Perse](/#calcolatore-roi)."
           }
         ]
       },
@@ -306,8 +306,8 @@ export const GUIDES: GuideItem[] = [
             "ordered": true,
             "items": [
               "Sei sotto il ponte e non rispondi dopo 4 squilli.",
-              "Il [Centralino AI per Autofficine](https://app.notion.com/settori/officine) risponde, chiede targa o modello auto, tipo di intervento (tagliando, revisione, spia accesa, gomme) e fascia preferita.",
-              "Ti arriva su WhatsApp la scheda pronta. In pausa pranzo confermi lo slot con un clic, oppure il sistema invia già una conferma via [Automazione WhatsApp AI](https://app.notion.com/servizi/automazione-whatsapp-ai)."
+              "Il [Centralino AI per Autofficine](/settori/officine) risponde, chiede targa o modello auto, tipo di intervento (tagliando, revisione, spia accesa, gomme) e fascia preferita.",
+              "Ti arriva su WhatsApp la scheda pronta. In pausa pranzo confermi lo slot con un clic, oppure il sistema invia già una conferma via [Automazione WhatsApp AI](/servizi/automazione-whatsapp-ai)."
             ]
           },
           {
@@ -319,7 +319,7 @@ export const GUIDES: GuideItem[] = [
             "ordered": true,
             "items": [
               "Hai le mani sporche o sei su un quadro elettrico.",
-              "Il [Centralino AI per Elettricisti](https://app.notion.com/settori/elettricisti) o [Idraulici](https://app.notion.com/settori/idraulici) filtra lo spam telefonico, esclude chi è fuori provincia e raccoglie indirizzo + gravità del guasto.",
+              "Il [Centralino AI per Elettricisti](/settori/elettricisti) o [Idraulici](/settori/idraulici) filtra lo spam telefonico, esclude chi è fuori provincia e raccoglie indirizzo + gravità del guasto.",
               "Appena scendi dalla scala vedi su WhatsApp solo le chiamate vere, già ordinate per priorità."
             ]
           }
@@ -396,7 +396,7 @@ export const GUIDES: GuideItem[] = [
             "type": "list",
             "ordered": true,
             "items": [
-              "Acquisizione strutturata: il cliente invia richiesta via [Centralino AI](https://app.notion.com/servizi/centralino-ai), [WhatsApp AI](https://app.notion.com/servizi/automazione-whatsapp-ai) o email. Se mancano dati essenziali (es. metri quadri, modello caldaia, comune, foto del quadro), l'assistente li chiede subito al cliente.",
+              "Acquisizione strutturata: il cliente invia richiesta via [Centralino AI](/servizi/centralino-ai), [WhatsApp AI](/servizi/automazione-whatsapp-ai) o email. Se mancano dati essenziali (es. metri quadri, modello caldaia, comune, foto del quadro), l'assistente li chiede subito al cliente.",
               "Estrazione dati: l'AI legge testo, note vocali e allegati (es. computi brevi, foto targhetta) e compila una scheda pulita.",
               "Incrocio con il tuo listino reale: il sistema consulta esclusivamente il tuo listino materiali/manodopera (Excel, Google Sheets o gestionale) e le tue regole di margine e diritto di chiamata.",
               "Generazione della bozza: crea automaticamente la bozza di preventivo nel tuo formato (Google Docs, PDF aziendale o bozza su gestionale/Fatture in Cloud).",
@@ -453,7 +453,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Scopri come costruiamo questi flussi collegati ai programmi che usi già nella pagina [Sviluppo AI per PMI](https://app.notion.com/servizi/sviluppo-ai-pmi) e nella pagina dedicata alle [PMI Italiane](https://app.notion.com/settori/pmi)."
+            "text": "Scopri come costruiamo questi flussi collegati ai programmi che usi già nella pagina [Sviluppo AI per PMI](/servizi/sviluppo-ai-pmi) e nella pagina dedicata alle [PMI Italiane](/settori/pmi)."
           }
         ]
       },
@@ -578,7 +578,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Puoi ascoltare e provare la resa reale sul [Simulatore Centralino AI](https://app.notion.com/#simulatore)."
+            "text": "Puoi ascoltare e provare la resa reale sul [Simulatore Centralino AI](/#simulatore)."
           }
         ]
       },
@@ -605,7 +605,7 @@ export const GUIDES: GuideItem[] = [
         "blocks": [
           {
             "type": "p",
-            "text": "Molti [studi professionali](https://app.notion.com/settori/studi-professionali), [officine](https://app.notion.com/settori/officine) e [PMI](https://app.notion.com/settori/pmi) non scelgono \"o uno o l'altro\": usano il Centralino AI come rete di sicurezza intelligente."
+            "text": "Molti [studi professionali](/settori/studi-professionali), [officine](/settori/officine) e [PMI](/settori/pmi) non scelgono \"o uno o l'altro\": usano il Centralino AI come rete di sicurezza intelligente."
           },
           {
             "type": "list",
@@ -618,7 +618,7 @@ export const GUIDES: GuideItem[] = [
           },
           {
             "type": "p",
-            "text": "Calcola quanto stai perdendo oggi tra chiamate non risposte e fuori orario con il [Calcolatore ROI](https://app.notion.com/#calcolatore-roi), oppure guarda i dettagli tecnici su [Centralino AI 24/7](https://app.notion.com/servizi/centralino-ai) e nelle [FAQ](https://app.notion.com/faq)."
+            "text": "Calcola quanto stai perdendo oggi tra chiamate non risposte e fuori orario con il [Calcolatore ROI](/#calcolatore-roi), oppure guarda i dettagli tecnici su [Centralino AI 24/7](/servizi/centralino-ai) e nelle [FAQ](/faq)."
           }
         ]
       }
